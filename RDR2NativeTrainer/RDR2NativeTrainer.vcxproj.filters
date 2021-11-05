@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{cc0c64a0-6cb3-4d5c-880b-05248ac0000b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RDR2NativeTrainer">
+      <UniqueIdentifier>{d5325df4-ec56-4bbe-af89-3ef32f38d7a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UserConfig">
+      <UniqueIdentifier>{33d5e984-a16e-4b61-9d07-30acd4429b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\xinput">
+      <UniqueIdentifier>{37b7aaeb-c9f0-4385-be5d-95b84805a23c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts">
+      <UniqueIdentifier>{12389dce-3d9d-4522-a495-3925d4ef8b35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\保镖">
+      <UniqueIdentifier>{3819204f-3d38-4b5f-8dd4-72c9a8c5614a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\武器">
+      <UniqueIdentifier>{10eedb65-86bf-4b25-9e4a-4c65fca8153b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\天气">
+      <UniqueIdentifier>{18de3e99-a0c5-4262-ad06-e8c59a7d7099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\模型">
+      <UniqueIdentifier>{1cce8809-f7bb-4ce9-8f95-2e3777a46008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\载具">
+      <UniqueIdentifier>{4db71695-ed87-4a1f-bb94-429e22a816d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\玩家">
+      <UniqueIdentifier>{3b28705c-300c-4313-83f3-c3d5f87da9e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\传送">
+      <UniqueIdentifier>{0d145974-9171-44d4-90a8-0bb0f4c03c55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\其他">
+      <UniqueIdentifier>{8126e0fb-94b3-4900-8189-85009f51cd32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\世界">
+      <UniqueIdentifier>{e649779c-f895-4433-9e32-0717c4acae7f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\main.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\nativeCaller.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\natives.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\types.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="scriptmenu.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="script.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="scriptinfo.h">
+      <Filter>scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="bodyguard.h">
+      <Filter>scripts\保镖</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>scripts\武器</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateAllModel.h">
+      <Filter>scripts\模型</Filter>
+    </ClInclude>
+    <ClInclude Include="Weather.h">
+      <Filter>scripts\天气</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\enums.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="vehicle.h">
+      <Filter>scripts\载具</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>scripts\玩家</Filter>
+    </ClInclude>
+    <ClInclude Include="Teleport.h">
+      <Filter>scripts\传送</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyConfig.h">
+      <Filter>UserConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="keyboard.h">
+      <Filter>UserConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="xinput.h">
+      <Filter>UserConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\xinput\CXBOXController.h">
+      <Filter>inc\xinput</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc.h">
+      <Filter>scripts\其他</Filter>
+    </ClInclude>
+    <ClInclude Include="word.h">
+      <Filter>scripts\世界</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="scriptmenu.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="script.cpp" />
+    <ClCompile Include="scriptinfo.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="bodyguard.cpp">
+      <Filter>scripts\保镖</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>scripts\武器</Filter>
+    </ClCompile>
+    <ClCompile Include="Function.cpp">
+      <Filter>scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateAllModel.cpp">
+      <Filter>scripts\模型</Filter>
+    </ClCompile>
+    <ClCompile Include="Weather.cpp">
+      <Filter>scripts\天气</Filter>
+    </ClCompile>
+    <ClCompile Include="vehicle.cpp">
+      <Filter>scripts\载具</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>scripts\玩家</Filter>
+    </ClCompile>
+    <ClCompile Include="Teleport.cpp">
+      <Filter>scripts\传送</Filter>
+    </ClCompile>
+    <ClCompile Include="json\jsoncpp.cpp">
+      <Filter>Json</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyConfig.cpp">
+      <Filter>UserConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard.cpp">
+      <Filter>UserConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="xinput.cpp">
+      <Filter>UserConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="inc\xinput\CXBOXController.cpp">
+      <Filter>inc\xinput</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc.cpp">
+      <Filter>scripts\其他</Filter>
+    </ClCompile>
+    <ClCompile Include="word.cpp">
+      <Filter>scripts\世界</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RDR2NativeTrainer\RDR2NativeTrainer.json">
+      <Filter>RDR2NativeTrainer</Filter>
+    </None>
+    <None Include="RDR2NativeTrainer\生物数据.xlsx">
+      <Filter>RDR2NativeTrainer</Filter>
+    </None>
+  </ItemGroup>
+</Project>

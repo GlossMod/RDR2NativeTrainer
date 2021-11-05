@@ -1,0 +1,43 @@
+{
+	// 键盘按键
+	// 如需设置辅助按键，用『,』号分割即可（即两种都可以）
+	// 按键关系为 『||』『或』
+	"hotKey":{
+		"toggle_main_menu":			["VK_F3"],								// 启动菜单 F3
+		"menu_up":					["VK_NUMPAD8","VK_UP"],					// 上	小键盘8
+		"menu_down":				["VK_NUMPAD2","VK_DOWN"],				// 下	小键盘2
+		"menu_left":				["VK_NUMPAD4","VK_LEFT"],				// 左	小键盘4
+		"menu_right":				["VK_NUMPAD6","VK_RIGHT"],				// 右	小键盘6
+		"menu_select":				["VK_NUMPAD5","VK_RETURN"],				// 选择	小键盘5
+		"menu_back":				["VK_NUMPAD0","VK_BACK"],				// 返回	小键盘0
+					
+		"veh_boost":				["VK_NUMPAD9"],							// 载具加速	小键盘9
+		"veh_stop":					["VK_NUMPAD3"],							// 载具减速	小键盘3
+		"veh_rockets":				["VK_ADD"],								// 发射RPG	小键盘+
+					
+		"hotkey_1":					["VK_KEY_T"],							// 出完美皮	T
+		"hotkey_2":					["VK_KEY_K"],							// 子弹时间	K
+		"hotkey_3":					["VK_F9"]								// 快速传送	F9
+		
+	},
+	// 接下来是手柄按键
+	// 适配于Xbox手柄,PS手柄没试过
+	// 如需设置组合键,用『,』号分割即可
+	// 按键关系为 『&&』『且』
+	"controller":{
+		"EnableController":			true,										// 是否启用手柄
+		"toggle_main_menu":			["FRONTEND_Y", "FRONTEND_RS"],				// 启动菜单 Y + 右摇杆
+		"menu_up":					["FRONTEND_PAD_UP"],						// 上	方向键上
+		"menu_down":				["FRONTEND_PAD_DOWN"],						// 下	方向键下
+		"menu_left":				["FRONTEND_PAD_LEFT"],						// 左	方向键左
+		"menu_right":				["FRONTEND_PAD_RIGHT"],						// 右	方向键右
+		"menu_select":				["FRONTEND_ACCEPT"],						// 选择	A
+		"menu_back":				["FRONTEND_CANCEL"],						// 返回	B
+		"veh_boost":				["FRONTEND_RT","FRONTEND_RB"],				// 载具加速 RT + RB
+		"veh_stop":					["FRONTEND_LT","FRONTEND_LB"],				// 载具减速 LT + LB
+		"veh_rockets":				["FRONTEND_LS","FRONTEND_RS"],				// 发射RPG LS + RS
+		"hotkey_1":					["FRONTEND_LS","FRONTEND_RS"],				// 出完美皮 LT + A
+		"hotkey_2":					["FRONTEND_PAD_LEFT","FRONTEND_CANCEL"],	// 子弹时间 左方向键 + B
+		"hotkey_3":					["FRONTEND_RT","FRONTEND_CANCEL"]			// 快速传送 RT + B
+	}
+}
