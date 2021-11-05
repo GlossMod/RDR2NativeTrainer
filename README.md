@@ -1,3 +1,5 @@
+# 荒野大镖客内置修改器 RNT
+
 荒野大镖客2线下内置修改器，决定命名为RDR2 Native Trainer，简称RNT；
 
 是基于Alexander Blade的Script Hook RDR2框架进行编写，所以你需要先安装Script Hook RDR2；
