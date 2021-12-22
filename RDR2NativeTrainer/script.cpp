@@ -59,12 +59,12 @@ MenuBase* CreateMainMenu(MenuController* controller)
 	string CU = CheckUpdates();
 
 
-	auto menu = new MenuBase(new MenuItemTitle(GT("RDR2内置修改器 By:小莫")));
+	auto menu = new MenuBase(new MenuItemListTitle(GT("RDR2内置修改器 By:小莫")));
 	controller->RegisterMenu(menu);
 
 	menu->AddItem(new MenuItemMenu(GT("玩家选项"), CreatePlayerMenu(controller)));
 	menu->AddItem(new MenuItemMenu(GT("传送选项"), CreatePlayerTeleportMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("生成模型"), CreateAllModel(controller)));
+	menu->AddItem(new MenuItemMenu(GT("创建选项"), CreateAllModel(controller)));
 	menu->AddItem(new MenuItemMenu(GT("保镖选项"), CreateBodyguardSpawnerMenu(controller)));
 	menu->AddItem(new MenuItemMenu(GT("载具选项"), CreateVehicleSpawnerMenu(controller)));
 	menu->AddItem(new MenuItemMenu(GT("武器选项"), CreateWeaponMenu(controller)));

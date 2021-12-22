@@ -268,7 +268,7 @@ MenuBase* CreatePlayerTeleportMenu(MenuController* controller)
 
 	menu->AddItem(new MenuItemPlayerTeleportToMarker(GT("传送到标记点[快捷键F9]")));
 	menu->AddItem(new MenuFastItemPlayerTeleportToMarker(GT("快速传送")));
-	menu->AddItem(new MenuFastItemGTA5TPModer(GT("GTA5式传送")));
+	//menu->AddItem(new MenuFastItemGTA5TPModer(GT("GTA5式传送")));
 	menu->AddItem(new MenuFastItemShowCurrentCoordinates(GT("显示当前坐标")));
 
 

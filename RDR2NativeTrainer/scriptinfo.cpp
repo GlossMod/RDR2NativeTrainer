@@ -145,6 +145,34 @@ void UpDataJsonData()
 				addLogs("传送坐标写入完成！");
 
 			}
+			// 获取草药数据
+			if (!json["medicine"].isNull())
+			{
+				medicine.clear();
+				for (int i = 0; i < json["medicine"].size(); i++)
+				{
+					dataInfo newPed;
+					newPed.code = json["medicine"][i]["code"].asString();
+					newPed.name = json["medicine"][i]["name"].asString();
+					medicine.push_back(newPed);
+
+				}
+				addLogs("草药数据写入完成！");
+			}
+
+			if (!json["newPed"].isNull())
+			{
+				newPed.clear();
+				for (int i = 0; i < json["newPed"].size(); i++)
+				{
+					dataInfo Ped;
+					Ped.code = json["newPed"][i]["code"].asString();
+					Ped.name = json["newPed"][i]["name"].asString();
+					newPed.push_back(Ped);
+
+				}
+				addLogs("草药数据写入完成！");
+			}
 
 
 			publicSetStatusText(GT("初始化完成"), 300);

@@ -5746,7 +5746,7 @@ namespace PED
 	static void _0x7E8F9949B7AABBF0(Any p0, Any p1, Any p2) { invoke<Void>(0x7E8F9949B7AABBF0, p0, p1, p2); } // 0x7E8F9949B7AABBF0 b1207
 	static Any _0x5DA36CCCB63C0895(Any p0, Any p1, Any p2) { return invoke<Any>(0x5DA36CCCB63C0895, p0, p1, p2); } // 0x5DA36CCCB63C0895 b1207
 	static void _0x56076667E7C2DCD6(Any p0, Any p1) { invoke<Void>(0x56076667E7C2DCD6, p0, p1); } // 0x56076667E7C2DCD6 b1311
-	static void _APPLY_SHOP_ITEM_TO_PED(Ped ped, Hash componentHash, BOOL immediately, BOOL isMp, BOOL p4) { invoke<Void>(0xD3A7B003ED343FD9, ped, componentHash, immediately, isMp, p4); } // 0xD3A7B003ED343FD9 b1207
+	static void _SET_PED_COMPONENT_ENABLED(Ped ped, Hash componentHash, BOOL immediately, BOOL isMp, BOOL p4) { invoke<Void>(0xD3A7B003ED343FD9, ped, componentHash, immediately, isMp, p4); } // 0xD3A7B003ED343FD9 b1207
 	static void _0x0D7FFA1B2F69ED82(Any p0, Any p1, Any p2, Any p3) { invoke<Void>(0x0D7FFA1B2F69ED82, p0, p1, p2, p3); } // 0x0D7FFA1B2F69ED82 b1355
 	static void REMOVE_SHOP_ITEM_FROM_PED_BY_CATEGORY(Any p0, Any p1, Any p2, Any p3) { invoke<Void>(0xDF631E4BCE1B1FC4, p0, p1, p2, p3); } // 0xDF631E4BCE1B1FC4 b1207
 	static void _0x66B957AAC2EAAEAB(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5) { invoke<Void>(0x66B957AAC2EAAEAB, p0, p1, p2, p3, p4, p5); } // 0x66B957AAC2EAAEAB b1207
@@ -7708,7 +7708,7 @@ namespace AI
 	static Any _0x03D741CB4052E26C(Any p0) { return invoke<Any>(0x03D741CB4052E26C, p0); } // 0x03D741CB4052E26C b1232
 	static Any _0x73F0D0327BFA0812(Any p0) { return invoke<Any>(0x73F0D0327BFA0812, p0); } // 0x73F0D0327BFA0812 b1207
 	static Any _0x5E5D96BE25E9DF68(Any p0) { return invoke<Any>(0x5E5D96BE25E9DF68, p0); } // 0x5E5D96BE25E9DF68 b1207
-	static Any _0x5B4BBE80AD5972DC(Any p0, Any p1, Any p2, Any p3, Any p4, Any p5, Any p6, Any p7) { return invoke<Any>(0x5B4BBE80AD5972DC, p0, p1, p2, p3, p4, p5, p6, p7); } // 0x5B4BBE80AD5972DC b1207
+	static Any _0x5B4BBE80AD5972DC(Hash asset, float x, float y, float z, float heading, int groundSetting, Any* p6, int p7) { return invoke<Any>(0x5B4BBE80AD5972DC, asset, x, y, z, heading, groundSetting, p6, p7); } // 0x5B4BBE80AD5972DC b1207
 	static void _0x5758B1EE0C3FD4AC(Any p0, Any p1) { invoke<Void>(0x5758B1EE0C3FD4AC, p0, p1); } // 0x5758B1EE0C3FD4AC b1207
 	static Any _0x96C6ED22FB742C3E(Any p0, Any p1) { return invoke<Any>(0x96C6ED22FB742C3E, p0, p1); } // 0x96C6ED22FB742C3E b1207
 	static Any _0xDF56A2B50C04DEA4(Any p0, Any p1) { return invoke<Any>(0xDF56A2B50C04DEA4, p0, p1); } // 0xDF56A2B50C04DEA4 b1207

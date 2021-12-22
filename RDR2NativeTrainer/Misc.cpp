@@ -420,38 +420,47 @@ class MenuItemOnrush : public MenuItemSwitchable
 					}
 				}
 			}
+
+			// 旧版按T方法
+			if (IsKeyJustUp(KeyConfig::KEY_HOT_1) || IsControllerButtonJustUp(KeyConfig::KEY_HOT_1))
+			{
+				Player pay = PLAYER::PLAYER_ID();  //获取玩家ID
+				Entity entity;  //申明一个Entity 类型的变量
+
+				if (PLAYER::GET_PLAYER_TARGET_ENTITY(pay, &entity) || PLAYER::GET_ENTITY_PLAYER_IS_FREE_AIMING_AT(pay, &entity))  //判断是否瞄准了NPC
+				{
+					DWORD model = ENTITY::GET_ENTITY_MODEL(entity);
+					if (STREAMING::IS_MODEL_IN_CDIMAGE(model) && STREAMING::IS_MODEL_VALID(model))
+					{
+						// 删除原动物
+						ENTITY::SET_ENTITY_HEALTH(entity, 0, true);	//设置目标生命值为0
+						ENTITY::SET_ENTITY_ALPHA(entity, 0, true);	// 设置透明
+						ENTITY::SET_ENTITY_COLLISION(entity, false, false);	// 移除碰撞 让它掉到地底去
+						ENTITY::SET_ENTITY_COMPLETELY_DISABLE_COLLISION(entity, true, false);	// 移除碰撞 让它掉到地底去
+
+						// 创建一个一模一样的动物
+						STREAMING::REQUEST_MODEL(model, FALSE);		// 搜索模型
+						while (!STREAMING::HAS_MODEL_LOADED(model))
+							WaitAndDraw(0); // WAIT(0);
+						//Vector3 coords = ENTITY::GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(PLAYER::PLAYER_PED_ID(), 0.0, 3.0, -0.3);	// 获取原动物坐标位置
+						Vector3 coords = ENTITY::GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(entity, 0.0, 0, 0);	// 获取原动物坐标位置
+						Ped ped = PED::CREATE_PED(model, coords.x, coords.y, coords.z, static_cast<float>(rand() % 360), 0, 0, 0, 0);	// 创建动物模型
+						PED::SET_PED_VISIBLE(ped, TRUE);				// 设置可见
+						ENTITY::SET_ENTITY_HEALTH(ped, 0, true);		// 设置目标生命值为0
+						ENTITY::SET_PED_AS_NO_LONGER_NEEDED(&ped);
+						STREAMING::SET_MODEL_AS_NO_LONGER_NEEDED(model);// 设为不再需要
+
+
+					}
+				}
+			}
 		}
 	}
 public:
 	MenuItemOnrush(string caption)
-		: MenuItemSwitchable(caption) {
-		//SetState(true);
-	}
+		: MenuItemSwitchable(caption) { }
 };
 
-class MenuItemFriendDamages : public MenuItemSwitchable
-{
-	virtual void OnFrame()
-	{
-		if (GetState())
-		{
-			runOnAllNearbyPedsToPlayer([](auto ped) {
-				PED::SET_PED_CAN_BE_TARGETTED_BY_PLAYER(ped, PLAYER::PLAYER_ID(), true);
-			});
-			runOnAllNearbyVehiclesToPlayer([](auto ped) {
-				PED::SET_PED_CAN_BE_TARGETTED_BY_PLAYER(ped, PLAYER::PLAYER_ID(), true);
-
-			});
-		}
-	}
-	
-
-public:
-	MenuItemFriendDamages(string caption)
-		: MenuItemSwitchable(caption) {
-		//SetState(true);
-	}
-};
 
 MenuBase* CreateMiscMenu(MenuController* controller)
 {
@@ -467,7 +476,6 @@ MenuBase* CreateMiscMenu(MenuController* controller)
 	menu->AddItem(new MenuItemMiscFlightMode(GT("飞行模式")));
 	menu->AddItem(new MenuItemMiscThroughMode(GT("穿墙模式")));
 	menu->AddItem(new MenuItemOnrush(GT("出完美皮")));
-	menu->AddItem(new MenuItemFriendDamages(GT("友方伤害")));
 
 
 	return menu;

@@ -1050,6 +1050,96 @@ MenuBase* MenuItemPlayerRank(MenuController* controller)
 	return menu;
 }
 
+
+int textureId = -1;
+// 设置服装
+class PlayerChangeClothing : public MenuItemDefault
+{
+	
+	virtual void OnSelect()
+	{
+		/*if (textureId != -1)
+		{
+			PED::_RESET_PED_TEXTURE_2(textureId);
+			PED::_RELEASE_TEXTURE(textureId);
+		}*/
+
+		//Hash normal = GAMEPLAY::GET_HASH_KEY("15AE34D2");
+
+		//Hash material = 0x7FC5B1E1;
+
+		//if (PED::IS_PED_MALE(PLAYER::PLAYER_PED_ID()))
+		//{
+		//	material = 0x50A4BBA9;
+		//}
+
+		//textureId = PED::_REQUEST_TEXTURE(albedo, normal, material);
+		//int overlay_id = PED::_ADD_TEXTURE_LAYER(textureId, 1, 0, 0, 0, 1, 0);
+		//PED::_SET_TEXTURE_LAYER_PALLETE(textureId, overlay_id, 0);
+		//PED::_SET_TEXTURE_LAYER_TINT(textureId, overlay_id, 0, 0, 0);
+		//PED::_SET_TEXTURE_LAYER_SHEET_GRID_INDEX(textureId, overlay_id, 0);
+		//PED::_SET_TEXTURE_LAYER_ALPHA(textureId, overlay_id, 1);
+
+		//// PED::_IS_TEXTURE_VALID
+		//while (PED::_IS_TEXTURE_VALID(textureId)) {
+		//	WaitAndDraw(100); // WAIT(0);
+		//}
+
+		//PED::_OVERRIDE_TEXTURE_ON_PED(PLAYER::PLAYER_PED_ID(), componentHash::heads, textureId);
+		//PED::_UPDATE_PED_TEXTURE(textureId);
+
+		//while (STREAMING::HAS_MODEL_LOADED(component))
+		//	WaitAndDraw(100); // WAIT(0);
+		//
+		//Hash component = GAMEPLAY::GET_HASH_KEY("hand_fr1_000_c0_000_mb");
+
+
+		//PED::_UPDATE_PED_VARIATION(PLAYER::PLAYER_PED_ID(), true, true, true, true, true);
+		//PED::_SET_PED_COMPONENT_ENABLED(PLAYER::PLAYER_PED_ID(), component, true, true, true);
+
+		Hash textureId = GAMEPLAY::GET_HASH_KEY("hand_fr1_000_c0_000_mb");
+		PED::_RESET_PED_TEXTURE_2(textureId);
+		PED::_RELEASE_TEXTURE(textureId);
+		int overlay_id = PED::_REQUEST_TEXTURE(0x83C128F6, 0x6856D24A, 0x50A4BBA9);
+		PED::_SET_TEXTURE_LAYER_PALLETE(textureId, overlay_id, 0);
+		PED::_SET_TEXTURE_LAYER_TINT(textureId, overlay_id, 0, 0, 0);
+		
+		PED::_SET_TEXTURE_LAYER_SHEET_GRID_INDEX(textureId, overlay_id, 0);
+		PED::_SET_TEXTURE_LAYER_ALPHA(textureId, overlay_id, 1.0f);
+		while (! PED::_IS_TEXTURE_VALID(textureId))
+		{
+			WaitAndDraw(100); // WAIT(0);
+		}
+		PED::_OVERRIDE_TEXTURE_ON_PED(PLAYER::PLAYER_PED_ID(), 0x378AD10C, textureId);
+		PED::_UPDATE_PED_TEXTURE(textureId);		
+		PED::_UPDATE_PED_VARIATION(PLAYER::PLAYER_PED_ID(), 0, 1, 1, 1, false);
+
+
+		SetStatusText(to_string(textureId));
+		//SetStatusText(GT("修改完成"));
+	}
+
+public:
+	PlayerChangeClothing(string caption )
+		: MenuItemDefault(caption) {}
+};
+
+// 修改服装
+MenuBase* CreatePlayerChangeClothingMenu(MenuController* controller)
+{
+	auto menu = new MenuBase(new MenuItemTitle(GT("修改服装")));
+	controller->RegisterMenu(menu);
+
+
+	menu->AddItem(new PlayerChangeClothing(GT("修改服装")));
+
+
+	return menu;
+}
+
+
+
+
 MenuBase* CreatePlayerMenu(MenuController* controller)
 {
 	MenuBase* menu = new MenuBase(new MenuItemTitle(GT("玩家选项")));
@@ -1057,6 +1147,7 @@ MenuBase* CreatePlayerMenu(MenuController* controller)
 
 	menu->AddItem(new MenuItemMenu(GT("马匹选项"), CreatePlayerTransportMenu(controller)));
 	menu->AddItem(new MenuItemMenu(GT("修改模型"), CreatePlayerChangeModelMenu(controller)));
+	//menu->AddItem(new MenuItemMenu(GT("修改服装"), CreatePlayerChangeClothingMenu(controller)));	// 无效
 
 	menu->AddItem(new MenuItemMenu(GT("通缉选项"), CreatePlayerWantedMenu(controller)));
 	menu->AddItem(new MenuItemMenu(GT("设置荣誉值"), MenuItemMiscSetHonor(controller)));

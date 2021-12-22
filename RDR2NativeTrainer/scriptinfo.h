@@ -54,7 +54,14 @@ vector<dataInfo> weapon{
 	{"LASSO",		GT(erMsg)}
 };
 
+// ²ÝÒ©
+vector<dataInfo> medicine{
+	{ "COMPOSITE_LOOTABLE_AGARITA_DEF",		GT(erMsg) }
+};
 
+vector<dataInfo> newPed{
+	{ "A_C_BOARLEGENDARY_01",		GT(erMsg) }
+};
 
 
 //´«ËÍÊý¾Ý
@@ -68,3 +75,44 @@ vector<TeleportInfo> teleport{
 };
 
 void UpDataJsonData();
+
+
+struct overlay
+{
+    string name;
+    int visibility;
+    int tx_id;
+    int tx_normal;
+    int tx_color_type;
+    float tx_opacity;
+    int tx_unk;
+    int palette;
+    int palette_color_primary;
+    int palette_color_secondary;
+    int palette_color_tertiary;
+    int var;
+    float opacity;
+
+};
+
+
+//vector<overlay> overlay_all_layers {
+//    {"eyebrows", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"scars", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"eyeliners", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"lipsticks", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"acne", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"shadows", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"beardstabble", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"paintedmasks", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"ageing", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"blush", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"complex", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"disc", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"foundation", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"freckles", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"grime", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"hair", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"moles", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//    {"spots", 0, 1, 0, 0, 0, 1.0, 0, 0, 0, 0, 0, 0, 1.0 },
+//};
