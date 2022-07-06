@@ -47,24 +47,24 @@ public:
 };
 MenuBase* CreateWeaponSelectMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("获取武器")));
+	auto menu = new MenuBase(new MenuItemListTitle(("获取武器")));
 	controller->RegisterMenu(menu);
 
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
-	for each (auto & modelInfo in weapon)
+	for (auto & modelInfo : weapon)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemGiveWeapon(kindAndModel.first, kindAndModel.second));
 	}
 
@@ -218,16 +218,16 @@ public:
 
 MenuBase* CreateWeaponbulletMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("特殊子弹")));
+	auto menu = new MenuBase(new MenuItemListTitle(("特殊子弹")));
 	controller->RegisterMenu(menu);
 
 
-	menu->AddItem(new MenuItemWeaponSuperbullet(GT("超级子弹"), -1));
+	menu->AddItem(new MenuItemWeaponSuperbullet(("超级子弹"), -1));
 
-	//menu->AddItem(new MenuItemWeaponShootAnimal(GT("动物子弹")));
-	menu->AddItem(new MenuItemWeaponAnimal(GT("变动物子弹")));
+	//menu->AddItem(new MenuItemWeaponShootAnimal(("动物子弹")));
+	menu->AddItem(new MenuItemWeaponAnimal(("变动物子弹")));
 
-	menu->AddItem(new MenuItemRAGDOLL(GT("不会摔倒")));
+	menu->AddItem(new MenuItemRAGDOLL(("不会摔倒")));
 
 
 	return menu;
@@ -263,11 +263,11 @@ class MenuItemTeleportGun : public MenuItemSwitchable
 		bool newState = !GetState();
 		if (newState)
 		{
-			SetStatusText(GT("传送枪开"));
+			SetStatusText(("传送枪开"));
 		}
 		else
 		{
-			SetStatusText(GT("传送枪关"));
+			SetStatusText(("传送枪关"));
 		}
 		SetState(newState);
 
@@ -301,7 +301,7 @@ class MenuItemGetAllWeapon : public MenuItemDefault
 {
 	virtual void OnSelect()
 	{
-		for each (auto m_name in weapon)
+		for (auto m_name : weapon)
 		{
 			Hash hash = GAMEPLAY::GET_HASH_KEY(const_cast<char*>(("WEAPON_" + m_name.code).c_str()));
 			Ped playerPed = PLAYER::PLAYER_PED_ID();
@@ -309,7 +309,7 @@ class MenuItemGetAllWeapon : public MenuItemDefault
 			WEAPON::SET_PED_AMMO(playerPed, hash, 100);
 			WEAPON::SET_CURRENT_PED_WEAPON(playerPed, hash, 1, 0, 0, 0);
 		}
-		SetStatusText(GT("已获取所有武器，如果没在马匹上，多余的武器将被丢弃"));
+		SetStatusText(("已获取所有武器，如果没在马匹上，多余的武器将被丢弃"));
 	}
 public:
 	MenuItemGetAllWeapon(string caption)
@@ -427,20 +427,20 @@ public:
 
 MenuBase* CreateWeaponMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("武器选项")));
+	auto menu = new MenuBase(new MenuItemTitle(("武器选项")));
 	controller->RegisterMenu(menu);
-	menu->AddItem(new MenuItemMenu(GT("获取武器"), CreateWeaponSelectMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("特殊子弹"), CreateWeaponbulletMenu(controller)));
-	menu->AddItem(new MenuItemGetAllWeapon(GT("获取所有武器")));
-	menu->AddItem(new MenuItemTeleportGun(GT("传送枪")));
+	menu->AddItem(new MenuItemMenu(("获取武器"), CreateWeaponSelectMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("特殊子弹"), CreateWeaponbulletMenu(controller)));
+	menu->AddItem(new MenuItemGetAllWeapon(("获取所有武器")));
+	menu->AddItem(new MenuItemTeleportGun(("传送枪")));
 
-	menu->AddItem(new MenuItemWeaponTrackingGuns(GT("追踪子弹")));
+	menu->AddItem(new MenuItemWeaponTrackingGuns(("追踪子弹")));
 
-	menu->AddItem(new MenuItemWeaponPowerfullGuns(GT("一击必杀")));
-	menu->AddItem(new MenuItemWeaponPowerfullMelee(GT("近战必杀")));
-	menu->AddItem(new MenuItemWeaponInfiniteAmmo(GT("无限子弹")));
-	menu->AddItem(new MenuItemWeaponNoReload(GT("无需换弹")));
-	menu->AddItem(new MenuItemWeaponDropCurrent(GT("丢弃武器")));
+	menu->AddItem(new MenuItemWeaponPowerfullGuns(("一击必杀")));
+	menu->AddItem(new MenuItemWeaponPowerfullMelee(("近战必杀")));
+	menu->AddItem(new MenuItemWeaponInfiniteAmmo(("无限子弹")));
+	menu->AddItem(new MenuItemWeaponNoReload(("无需换弹")));
+	menu->AddItem(new MenuItemWeaponDropCurrent(("丢弃武器")));
 
 	return menu;
 }

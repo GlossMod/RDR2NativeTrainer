@@ -26,41 +26,41 @@ string erMsg = "未找到RDR2NativeTrainer.json文件";
 
 //人物
 vector<dataInfo> ped{
-	{"A_M_Y_AsbMiner_01",						GT(erMsg)},
+	{"A_M_Y_AsbMiner_01",						(erMsg)},
 };
 
 //动物
 vector<dataInfo> animal{
-	{"A_C_DOGAMERICANFOXHOUND_01",				GT(erMsg)},
+	{"A_C_DOGAMERICANFOXHOUND_01",				(erMsg)},
 };
 
 //马匹
 vector<dataInfo> horse{
-	{"A_C_HORSE_AMERICANPAINT_GREYOVERO",		GT(erMsg)},
+	{"A_C_HORSE_AMERICANPAINT_GREYOVERO",		(erMsg)},
 };
 
 //载具
 vector<dataInfo> vehicle {
-	{"breach_cannon",			GT(erMsg)},
+	{"breach_cannon",			(erMsg)},
 };
 
 //天气
 vector<dataInfo> weather{
-	{"HIGHPRESSURE",				GT(erMsg)}
+	{"HIGHPRESSURE",				(erMsg)}
 };
 
 //武器
 vector<dataInfo> weapon{
-	{"LASSO",		GT(erMsg)}
+	{"LASSO",		(erMsg)}
 };
 
 // 草药
 vector<dataInfo> medicine{
-	{ "COMPOSITE_LOOTABLE_AGARITA_DEF",		GT(erMsg) }
+	{ "COMPOSITE_LOOTABLE_AGARITA_DEF",		(erMsg) }
 };
 
 vector<dataInfo> newPed{
-	{ "A_C_BOARLEGENDARY_01",		GT(erMsg) }
+	{ "A_C_BOARLEGENDARY_01",		(erMsg) }
 };
 
 
@@ -71,7 +71,7 @@ struct TeleportInfo
 	string name;
 };
 vector<TeleportInfo> teleport{
-	{{1232.205,	-1251.088,	73.67763},					GT(erMsg)}
+	{{1232.205,	-1251.088,	73.67763},					(erMsg)}
 };
 
 void UpDataJsonData();

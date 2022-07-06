@@ -37,7 +37,7 @@ bool IsControllerButtonDown(std::string btnName)
 
 	bool result = false;
 
-	for each (ButtonsWithNames btn in buttonConf->buttonCodes)
+	for  (ButtonsWithNames btn : buttonConf->buttonCodes)
 	{
 		WORD code = btn.buttonCode;
 		result = PAD::IS_CONTROL_PRESSED(0, code);
@@ -61,7 +61,7 @@ bool IsControllerButtonJustUp(std::string btnName)
 	ControllerButtonConfig* buttonConf = get_config()->get_key_config()->get_controller_button(btnName);
 	
 	bool result = false;
-	for each (ButtonsWithNames btn in buttonConf->buttonCodes)
+	for (ButtonsWithNames btn : buttonConf->buttonCodes)
 	{
 		WORD code = btn.buttonCode;
 		result = PAD::IS_CONTROL_JUST_RELEASED(0, code);
@@ -93,7 +93,7 @@ bool UpdateXInputControlState()
 ButtonsWithNames buttonNameToVal(char * input)
 {
 	std::string inputS = std::string(input);
-	for each (ButtonsWithNames button in ALL_BUTTONS)
+	for (ButtonsWithNames button : ALL_BUTTONS)
 	{
 		if (button.name.compare(inputS) == 0)
 		{

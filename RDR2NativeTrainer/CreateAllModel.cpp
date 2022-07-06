@@ -1,4 +1,4 @@
-
+#pragma execution_character_set("utf-8")
 #include "CreateAllModel.h"
 
 #include "scriptinfo.h"
@@ -120,7 +120,7 @@ class MenuItemSpawnMedicine : public MenuItemDefault
 		auto medicine = AI::_0x5B4BBE80AD5972DC(MedicineHash, coords.x, coords.y, coords.z, 0, 0, &a, -1);
 
 
-		SetStatusText(GT("创建完成"));
+		SetStatusText(("创建完成"));
 	}
 public:
 	MenuItemSpawnMedicine(string caption, string model)
@@ -131,27 +131,27 @@ public:
 
 MenuBase* CreateHorseSpawnerMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("刷出马匹")));
+	auto menu = new MenuBase(new MenuItemListTitle(("刷出马匹")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemSpawnHorseRandom(GT("随机马匹")));
+	menu->AddItem(new MenuItemSpawnHorseRandom(("随机马匹")));
 
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
 
-	for each (auto & modelInfo in horse)
+	for (auto & modelInfo : horse)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemSpawnPed(kindAndModel.first, kindAndModel.second));
 	}
 
@@ -163,27 +163,27 @@ MenuBase* CreateHorseSpawnerMenu(MenuController* controller)
 
 MenuBase* CreateAnimalSpawnerMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("刷出动物")));
+	auto menu = new MenuBase(new MenuItemListTitle(("刷出动物")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemSpawnAnimalRandom(GT("随机")));
-	menu->AddItem(new MenuItemMenu(GT("马匹"), CreateHorseSpawnerMenu(controller)));
+	menu->AddItem(new MenuItemSpawnAnimalRandom(("随机")));
+	menu->AddItem(new MenuItemMenu(("马匹"), CreateHorseSpawnerMenu(controller)));
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
 
-	for each (auto & modelInfo in animal)
+	for (auto & modelInfo : animal)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemSpawnPed(kindAndModel.first, kindAndModel.second));
 	}
 
@@ -192,26 +192,26 @@ MenuBase* CreateAnimalSpawnerMenu(MenuController* controller)
 
 MenuBase* CreateHumanSpawnerMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("创建人物")));
+	auto menu = new MenuBase(new MenuItemListTitle(("创建人物")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemSpawnPedRandom(GT("随机人物")));
+	menu->AddItem(new MenuItemSpawnPedRandom(("随机人物")));
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
 
-	for each (auto & modelInfo in ped)
+	for (auto & modelInfo : ped)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemSpawnPed(kindAndModel.first, kindAndModel.second));
 	}
 
@@ -221,14 +221,14 @@ MenuBase* CreateHumanSpawnerMenu(MenuController* controller)
 // 创建草药
 MenuBase* CreateMedicineSpawnerMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("创建草药")));
+	auto menu = new MenuBase(new MenuItemListTitle(("创建草药")));
 	controller->RegisterMenu(menu);
 
-	//menu->AddItem(new MenuItemSpawnMedicineRandom(GT("随机草药")));
+	//menu->AddItem(new MenuItemSpawnMedicineRandom(("随机草药")));
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
 
-	for each (auto & modelInfo in medicine)
+	for (auto & modelInfo : medicine)
 	{
 
 		menu->AddItem(new MenuItemSpawnMedicine(modelInfo.name, modelInfo.code));
@@ -240,11 +240,11 @@ MenuBase* CreateMedicineSpawnerMenu(MenuController* controller)
 // 新PED
 MenuBase* CreateNewSpawnerMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("新PED")));
+	auto menu = new MenuBase(new MenuItemListTitle(("新PED")));
 	controller->RegisterMenu(menu);
 
 
-	for each (auto & modelInfo in newPed)
+	for (auto & modelInfo : newPed)
 	{
 		menu->AddItem(new MenuItemSpawnPed(modelInfo.name, modelInfo.code));
 	}
@@ -277,11 +277,11 @@ class MenuItemInputModelCode : public MenuItemSpawnPed
 		DWORD model = GAMEPLAY::GET_HASH_KEY(GAMEPLAY::GET_ONSCREEN_KEYBOARD_RESULT());
 		if (STREAMING::IS_MODEL_IN_CDIMAGE(model) && STREAMING::IS_MODEL_VALID(model))
 		{
-			SetStatusText(GT("成功"));
+			SetStatusText(("成功"));
 		}
 		else
 		{
-			SetStatusText(GT("未找到此模型"));
+			SetStatusText(("未找到此模型"));
 		}
 
 		ModerCode = GAMEPLAY::GET_ONSCREEN_KEYBOARD_RESULT();
@@ -296,15 +296,15 @@ public:
 
 MenuBase* CreateAllModel(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("创建选项")));
+	auto menu = new MenuBase(new MenuItemListTitle(("创建选项")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMenu(GT("创建动物"), CreateAnimalSpawnerMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("创建人物"), CreateHumanSpawnerMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("创建草药"), CreateMedicineSpawnerMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("新PED"), CreateNewSpawnerMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("创建动物"), CreateAnimalSpawnerMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("创建人物"), CreateHumanSpawnerMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("创建草药"), CreateMedicineSpawnerMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("新PED"), CreateNewSpawnerMenu(controller)));
 
-	menu->AddItem(new MenuItemInputModelCode(GT("输入模型代码")));
+	menu->AddItem(new MenuItemInputModelCode(("输入模型代码")));
 
 	return menu;
 }

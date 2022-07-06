@@ -79,13 +79,13 @@ public:
 /// </summary>
 MenuBase* CreateWeatherMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("天气")));
+	auto menu = new MenuBase(new MenuItemListTitle(("天气")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemWeatherFreeze(GT("冻结天气")));
-	menu->AddItem(new MenuItemWeatherWind(GT("台风")));
+	menu->AddItem(new MenuItemWeatherFreeze(("冻结天气")));
+	menu->AddItem(new MenuItemWeatherWind(("台风")));
 
-	for each (auto var in weather)
+	for (auto var : weather)
 	{
 		menu->AddItem(new MenuItemWeatherSelect(var.name, var.code));
 	}

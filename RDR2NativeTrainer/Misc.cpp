@@ -140,7 +140,7 @@ class MenuItemMiscRevealMap : public MenuItemDefault
 	{
 		MAP::SET_MINIMAP_HIDE_FOW(TRUE);
 		MAP::_REVEAL_MINIMAP_FOW(0);
-		SetStatusText(GT("显示地图"));
+		SetStatusText(("显示地图"));
 	}
 public:
 	MenuItemMiscRevealMap(string caption) :
@@ -158,7 +158,7 @@ class MenuItemMiscTransportGuns : public MenuItemSwitchable
 	{
 		bool newstate = !GetState();
 		if (newstate)
-			SetStatusText(GT("警告: 破坏某些对象可能导致 ERR_GFX_STATE 错误\n\n 按小键盘 + 号键启用"), 5000);
+			SetStatusText(("警告: 破坏某些对象可能导致 ERR_GFX_STATE 错误\n\n 按小键盘 + 号键启用"), 5000);
 		SetState(newstate);
 	}
 
@@ -240,14 +240,14 @@ public:
 
 MenuBase* CreateTimeMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTimeTitle(GT("时间")));
+	auto menu = new MenuBase(new MenuItemTimeTitle(("时间")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemTimeAdjust(GT("前进1小时"), 1));
-	menu->AddItem(new MenuItemTimeAdjust(GT("后退1小时"), -1));
-	menu->AddItem(new MenuItemTimePause(GT("暂停时间")));
-	menu->AddItem(new MenuItemTimeRealistic(GT("真实时间")));
-	menu->AddItem(new MenuItemTimeSystemSynced(GT("同步系统时间")));
+	menu->AddItem(new MenuItemTimeAdjust(("前进1小时"), 1));
+	menu->AddItem(new MenuItemTimeAdjust(("后退1小时"), -1));
+	menu->AddItem(new MenuItemTimePause(("暂停时间")));
+	menu->AddItem(new MenuItemTimeRealistic(("真实时间")));
+	menu->AddItem(new MenuItemTimeSystemSynced(("同步系统时间")));
 
 	return menu;
 }
@@ -263,7 +263,7 @@ class MenuItemMiscFlightMode : public MenuItemSwitchable
 		if (newstate)
 		{
 			PED::SET_PED_GRAVITY(player, false);
-			SetStatusText(GT("飞行模式开"));
+			SetStatusText(("飞行模式开"));
 		}
 		else
 		{
@@ -271,7 +271,7 @@ class MenuItemMiscFlightMode : public MenuItemSwitchable
 			PED::SET_PED_CAN_RAGDOLL(player, true);
 			PLAYER::SET_PLAYER_CAN_USE_COVER(player, true);
 
-			SetStatusText(GT("飞行模式关"));
+			SetStatusText(("飞行模式关"));
 
 		}
 		SetState(newstate);
@@ -361,13 +361,13 @@ class MenuItemMiscThroughMode : public MenuItemSwitchable
 		{
 			ENTITY::SET_ENTITY_COLLISION(player, false, true);
 			PED::SET_PED_GRAVITY(player, false);
-			SetStatusText(GT("穿墙模式开"));
+			SetStatusText(("穿墙模式开"));
 		}
 		else
 		{
 			ENTITY::SET_ENTITY_COLLISION(player, true, true);
 			PED::SET_PED_GRAVITY(player, true);
-			SetStatusText(GT("穿墙模式关"));
+			SetStatusText(("穿墙模式关"));
 		}
 		SetState(newstate);
 	}
@@ -464,18 +464,18 @@ public:
 
 MenuBase* CreateMiscMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("其他选项")));
+	auto menu = new MenuBase(new MenuItemTitle(("其他选项")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMiscHideHud(GT("隐藏小地图")));
+	menu->AddItem(new MenuItemMiscHideHud(("隐藏小地图")));
 
-	menu->AddItem(new MenuItemMiscTransportGuns(GT("马附机枪"), true, true));
-	menu->AddItem(new MenuItemMiscTransportGuns(GT("马附RPG"), true, false));
-	menu->AddItem(new MenuItemMiscTransportGuns(GT("马车机枪"), false, true));
-	menu->AddItem(new MenuItemMiscTransportGuns(GT("马车RPG"), false, false));
-	menu->AddItem(new MenuItemMiscFlightMode(GT("飞行模式")));
-	menu->AddItem(new MenuItemMiscThroughMode(GT("穿墙模式")));
-	menu->AddItem(new MenuItemOnrush(GT("出完美皮")));
+	menu->AddItem(new MenuItemMiscTransportGuns(("马附机枪"), true, true));
+	menu->AddItem(new MenuItemMiscTransportGuns(("马附RPG"), true, false));
+	menu->AddItem(new MenuItemMiscTransportGuns(("马车机枪"), false, true));
+	menu->AddItem(new MenuItemMiscTransportGuns(("马车RPG"), false, false));
+	menu->AddItem(new MenuItemMiscFlightMode(("飞行模式")));
+	menu->AddItem(new MenuItemMiscThroughMode(("穿墙模式")));
+	menu->AddItem(new MenuItemOnrush(("出完美皮")));
 
 
 	return menu;

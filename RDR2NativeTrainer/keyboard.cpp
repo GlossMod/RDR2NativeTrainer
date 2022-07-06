@@ -42,7 +42,7 @@ bool IsKeyDown(std::string keyName)
 	{
 		// 如果配置了多键
 		bool result = false;
-		for each (auto val in key->keyCodes)
+		for (auto val : key->keyCodes)
 		{
 			result = IsKeyDown(val);
 			if (result)	break;
@@ -100,7 +100,7 @@ bool IsKeyJustUp(std::string keyName, bool exclusive)
 	{
 		// 如果配置了多键
 		bool result = false;
-		for each (auto val in key->keyCodes)
+		for (auto val : key->keyCodes)
 		{
 			result = IsKeyJustUp(val);
 			if (result)	break;

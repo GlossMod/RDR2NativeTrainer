@@ -22,7 +22,7 @@ void UpDataJsonData()
 
 	if (!file.is_open())
 	{
-		publicSetStatusText(GT("json数据读取失败"), 300);
+		publicSetStatusText(("json数据读取失败"), 300);
 		addLogs("RDR2NativeTrainer.json读取失败");
 		return;
 	}
@@ -175,11 +175,11 @@ void UpDataJsonData()
 			}
 
 
-			publicSetStatusText(GT("初始化完成"), 300);
+			publicSetStatusText(("初始化完成"), 300);
 		}
 		catch (const std::exception& e)
 		{
-			publicSetStatusText(GT("初始化失败"), 300);
+			publicSetStatusText(("初始化失败"), 300);
 			addLogs("配置文件读取错误：");
 			addLogs(e.what());
 		}

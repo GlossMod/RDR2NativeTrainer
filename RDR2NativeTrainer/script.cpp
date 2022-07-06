@@ -1,4 +1,5 @@
-﻿#include "script.h"
+﻿
+#include "script.h"
 //自定义方法引入
 #include "Function.h"
 #include "scriptmenu.h"
@@ -59,19 +60,19 @@ MenuBase* CreateMainMenu(MenuController* controller)
 	string CU = CheckUpdates();
 
 
-	auto menu = new MenuBase(new MenuItemListTitle(GT("RDR2内置修改器 By:小莫")));
+	auto menu = new MenuBase(new MenuItemListTitle("RDR2内置修改器 By:小莫"));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMenu(GT("玩家选项"), CreatePlayerMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("传送选项"), CreatePlayerTeleportMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("创建选项"), CreateAllModel(controller)));
-	menu->AddItem(new MenuItemMenu(GT("保镖选项"), CreateBodyguardSpawnerMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("载具选项"), CreateVehicleSpawnerMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("武器选项"), CreateWeaponMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("世界选项"), CreateWordMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("其他选项"), CreateMiscMenu(controller)));
+	menu->AddItem(new MenuItemMenu("玩家选项", CreatePlayerMenu(controller)));
+	menu->AddItem(new MenuItemMenu("传送选项", CreatePlayerTeleportMenu(controller)));
+	menu->AddItem(new MenuItemMenu("创建选项", CreateAllModel(controller)));
+	menu->AddItem(new MenuItemMenu("保镖选项", CreateBodyguardSpawnerMenu(controller)));
+	menu->AddItem(new MenuItemMenu("载具选项", CreateVehicleSpawnerMenu(controller)));
+	menu->AddItem(new MenuItemMenu("武器选项", CreateWeaponMenu(controller)));
+	menu->AddItem(new MenuItemMenu("世界选项", CreateWordMenu(controller)));
+	menu->AddItem(new MenuItemMenu("其他选项", CreateMiscMenu(controller)));
 
-	menu->AddItem(new MenuItemRefreshList(GT("重载自定义数据")));
+	menu->AddItem(new MenuItemRefreshList("重载自定义数据"));
 	menu->AddItem(new CreateMiscOpenModWeb(CU));
 
 	return menu;

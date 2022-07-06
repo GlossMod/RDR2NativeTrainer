@@ -14,7 +14,6 @@
 #include <sstream>
 #include <iomanip>
 
-std::string GT(const string& strGBK);
 
 MenuBase* CreateTimeMenu(MenuController* controller);
 MenuBase* CreateMiscMenu(MenuController* controller);

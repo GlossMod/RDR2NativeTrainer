@@ -1,14 +1,13 @@
-/*
+﻿/*
 	THIS FILE IS A PART OF RDR 2 SCRIPT HOOK SDK
 				http://dev-c.com
 			(C) Alexander Blade 2019
 */
-
+#pragma execution_character_set("utf-8")
 #include "scriptmenu.h"
-#include "GbkToUtf8.h"
 #include <iomanip>
 
-void DrawText(float x, float y, char *str)
+void DrawText(float x, float y, const char *str)
 {
 	//UI::DRAW_TEXT(GAMEPLAY::CREATE_STRING(10, "LITERAL_STRING", str), x, y);
 	UIDEBUG::_BG_DISPLAY_TEXT(GAMEPLAY::CREATE_STRING(10, "LITERAL_STRING", str), x, y);

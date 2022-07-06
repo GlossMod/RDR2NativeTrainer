@@ -9,6 +9,7 @@
 #include "script.h"
 #include "keyboard.h"
 #include "KeyConfig.h"
+#include "Function.h"
 
 #include <windows.h>
 #include <vector>
@@ -24,7 +25,7 @@ class MenuController;
 
 struct ColorRgba
 {
-	byte	r, g, b, a;
+	int	r, g, b, a;
 };
 
 enum eMenuItemClass
@@ -157,7 +158,9 @@ class MenuItemSwitchable : public MenuItemDefault
 public:
 	MenuItemSwitchable(string caption)
 		: MenuItemDefault(caption),
-		m_state(false) {}
+		m_state(false) {
+			// addLogs(caption);
+		}
 	virtual eMenuItemClass GetClass() { return eMenuItemClass::Switchable; }	
 	virtual void OnDraw(float lineTop, float lineLeft, bool active);
 	virtual void OnSelect() { m_state = !m_state; }
@@ -245,7 +248,7 @@ public:
 		  m_activeLineIndex(0), m_activeScreenIndex(0) {}
 	~MenuBase()
 	{
-		for each (auto item in m_items)
+		for  (auto item : m_items)
 			delete item;
 	}
 	void AddItem(MenuItemBase *item) { item->SetMenu(this); m_items.push_back(item); }
@@ -310,8 +313,8 @@ class MenuController
 	string	m_statusText;
 	DWORD	m_statusTextMaxTicks;
 
-	void InputWait(int ms)		{	m_inputTurnOnTime = GetTickCount() + ms; }
-	bool InputIsOnWait()		{	return m_inputTurnOnTime > GetTickCount(); }
+	void InputWait(int ms)		{	m_inputTurnOnTime = GetTickCount64() + ms; }
+	bool InputIsOnWait()		{	return m_inputTurnOnTime > GetTickCount64(); }
 	MenuBase *GetActiveMenu()	{	return m_menuStack.size() ? m_menuStack[m_menuStack.size() - 1] : NULL; }
 	void DrawStatusText();
 	void OnDraw()
@@ -338,7 +341,7 @@ public:
 		: m_inputTurnOnTime(0), m_statusTextMaxTicks(0) {}
 	~MenuController()
 	{
-		for each (auto menu in m_menuList)
+		for (auto menu : m_menuList)
 			delete menu;
 	}
 	bool HasActiveMenu()			{	return m_menuStack.size() > 0; }

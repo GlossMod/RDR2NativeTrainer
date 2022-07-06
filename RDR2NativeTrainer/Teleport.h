@@ -14,6 +14,5 @@
 #include <sstream>
 #include <iomanip>
 
-std::string GT(const string& strGBK);
 
 MenuBase* CreatePlayerTeleportMenu(MenuController* controller);

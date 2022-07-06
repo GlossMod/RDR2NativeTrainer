@@ -7,7 +7,6 @@ using namespace std;
 
 
 void publicSetStatusText(string text, DWORD time);//显示提示文字
-string GT(const string& strGBK);//GBK编码转换到UTF8编码
 string CheckUpdates();	//检测更新
 
 void addLogs(std::string log);	// 写入日志
@@ -44,3 +43,18 @@ namespace camShit {
 	void resetCam(bool clearFocus = true);
 }
 float getHeightAboveGround(Vector3 position);	// 获取地面坐标
+
+
+
+
+//
+//
+//// 用户操作记录保存
+//class UserConfig {	
+//	
+//	
+//public:
+//	void Save(string key);
+//	void Load(string key);
+//	void Clear();
+//};

@@ -12,6 +12,5 @@
 
 #include <windows.h>
 
-std::string GT(const string& strGBK);
 
 MenuBase* CreateBodyguardSpawnerMenu(MenuController* controller);

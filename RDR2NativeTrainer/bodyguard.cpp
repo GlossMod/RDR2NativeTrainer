@@ -1,4 +1,5 @@
-﻿#include "bodyguard.h"
+﻿#pragma execution_character_set("utf-8")
+#include "bodyguard.h"
 
 #include "scriptinfo.h"
 
@@ -109,7 +110,7 @@ class MenuItemEmptyBodyguar : public MenuItemDefault
 
 	virtual void OnSelect()
 	{
-		for each (auto ped in spawnedBodyguards)
+		for (auto ped : spawnedBodyguards)
 		{
 			PED::DELETE_PED(&ped);
 		}
@@ -128,7 +129,7 @@ class MenuItemKillBodyguar : public MenuItemDefault
 
 	virtual void OnSelect()
 	{
-		for each (auto ped in spawnedBodyguards)
+		for (auto ped : spawnedBodyguards)
 		{
 			ENTITY::SET_ENTITY_HEALTH(ped, 0, true);
 		}
@@ -264,11 +265,11 @@ class MenuItemInputBodyguarModelCode : public MenuItemSpawnBodyguard
 		DWORD model = GAMEPLAY::GET_HASH_KEY(GAMEPLAY::GET_ONSCREEN_KEYBOARD_RESULT());
 		if (STREAMING::IS_MODEL_IN_CDIMAGE(model) && STREAMING::IS_MODEL_VALID(model))
 		{
-			SetStatusText(GT("成功"));
+			SetStatusText(("成功"));
 		}
 		else
 		{
-			SetStatusText(GT("未找到此模型"));
+			SetStatusText(("未找到此模型"));
 		}
 		ModerCode = GAMEPLAY::GET_ONSCREEN_KEYBOARD_RESULT();
 		return GAMEPLAY::GET_ONSCREEN_KEYBOARD_RESULT();
@@ -283,7 +284,7 @@ class MenuItemFeatureBodyguardForeverInTeam : public MenuItemDefault
 {
 	virtual void OnFrame()
 	{
-		for each (auto ped in spawnedBodyguards)
+		for (auto ped : spawnedBodyguards)
 		{
 			Player PlayerID = PLAYER::PLAYER_ID();	//获取玩家ID
 			int groupId = PLAYER::GET_PLAYER_GROUP(PLAYER::GET_PLAYER_INDEX());	//获取玩家所在组ID
@@ -310,7 +311,7 @@ class MenuItemGiveBodyguarWeaponList : public MenuItemDefault
 
 	virtual void OnSelect()
 	{
-		for each (auto ped in spawnedBodyguards)
+		for (auto ped : spawnedBodyguards)
 		{
 			WEAPON::REMOVE_ALL_PED_WEAPONS(ped, true, true);	//先移除武器
 
@@ -337,7 +338,7 @@ class MenuItemFeatureBodyguardInvincible : public MenuItemSwitchable
 		if (GetState()) {
 			featureBodyguardInvincible = true;
 
-			for each (auto ped in spawnedBodyguards)
+			for (auto ped : spawnedBodyguards)
 			{
 				ENTITY::SET_ENTITY_INVINCIBLE(ped, true);
 			}
@@ -345,7 +346,7 @@ class MenuItemFeatureBodyguardInvincible : public MenuItemSwitchable
 		else 
 		{
 			featureBodyguardInvincible = false;
-			for each (auto ped in spawnedBodyguards)
+			for (auto ped : spawnedBodyguards)
 			{
 				ENTITY::SET_ENTITY_INVINCIBLE(ped, false);
 			}
@@ -364,7 +365,7 @@ class MenuItemFeatureBodyguardInfAmmo : public MenuItemSwitchable
 		if (GetState()) {
 			featureBodyguardInfAmmo = true;
 
-			for each (auto ped in spawnedBodyguards)
+			for (auto ped : spawnedBodyguards)
 			{
 				WEAPON::_SET_PED_INFINITE_AMMO_CLIP(ped, true);
 			}
@@ -372,7 +373,7 @@ class MenuItemFeatureBodyguardInfAmmo : public MenuItemSwitchable
 		else
 		{
 			featureBodyguardInfAmmo = false;
-			for each (auto ped in spawnedBodyguards)
+			for (auto ped : spawnedBodyguards)
 			{
 				WEAPON::_SET_PED_INFINITE_AMMO_CLIP(ped, false);
 			}
@@ -386,53 +387,53 @@ public:
 
 MenuBase* MenuItemGetBodyguar(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("生成保镖")));
+	auto menu = new MenuBase(new MenuItemTitle(("生成保镖")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemSpawnBodyguardRandom(GT("随机保镖")));
+	menu->AddItem(new MenuItemSpawnBodyguardRandom(("随机保镖")));
 
-	auto peopleMenu = new MenuBase(new MenuItemTitle(GT("生成人物")));
+	auto peopleMenu = new MenuBase(new MenuItemTitle(("生成人物")));
 	controller->RegisterMenu(peopleMenu);
-	menu->AddItem(new MenuItemMenu(GT("生成人物"),peopleMenu));
+	menu->AddItem(new MenuItemMenu(("生成人物"),peopleMenu));
 	unordered_map<string, vector<pair<string, string>>> breeds;
-	for each (auto & modelInfo in ped)
+	for (auto & modelInfo : ped)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		peopleMenu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemSpawnBodyguard(kindAndModel.first, kindAndModel.second));
 	}
 
-	auto animalMenu = new MenuBase(new MenuItemTitle(GT("生成动物")));
+	auto animalMenu = new MenuBase(new MenuItemTitle(("生成动物")));
 	controller->RegisterMenu(animalMenu);
-	menu->AddItem(new MenuItemMenu(GT("生成动物"), animalMenu));
+	menu->AddItem(new MenuItemMenu(("生成动物"), animalMenu));
 	unordered_map<string, vector<pair<string, string>>> albreeds;
-	for each (auto & modelInfo in animal)
+	for (auto & modelInfo : animal)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		albreeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in albreeds)
+	for (auto & breed : albreeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		animalMenu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemSpawnBodyguard(kindAndModel.first, kindAndModel.second));
 	}
 
 
-	menu->AddItem(new MenuItemInputBodyguarModelCode(GT("输入模型代码")));
+	menu->AddItem(new MenuItemInputBodyguarModelCode(("输入模型代码")));
 
 
 	return menu;
@@ -440,24 +441,24 @@ MenuBase* MenuItemGetBodyguar(MenuController* controller)
 
 MenuBase* MenuItemGiveBodyguarWeapon(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("获取武器")));
+	auto menu = new MenuBase(new MenuItemListTitle(("获取武器")));
 	controller->RegisterMenu(menu);
 
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
-	for each (auto & modelInfo in weapon)
+	for (auto & modelInfo : weapon)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemGiveBodyguarWeaponList(kindAndModel.first, kindAndModel.second));
 	}
 	return menu;
@@ -465,18 +466,18 @@ MenuBase* MenuItemGiveBodyguarWeapon(MenuController* controller)
 
 MenuBase* CreateBodyguardSpawnerMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("保镖")));
+	auto menu = new MenuBase(new MenuItemTitle(("保镖")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMenu(GT("生成保镖"), MenuItemGetBodyguar(controller)));
-	menu->AddItem(new MenuItemBreakCopyYourself(GT("复制自己")));
+	menu->AddItem(new MenuItemMenu(("生成保镖"), MenuItemGetBodyguar(controller)));
+	menu->AddItem(new MenuItemBreakCopyYourself(("复制自己")));
 
-	menu->AddItem(new MenuItemMenu(GT("给予武器"), MenuItemGiveBodyguarWeapon(controller)));
-	menu->AddItem(new MenuItemEmptyBodyguar(GT("清空保镖")));
-	menu->AddItem(new MenuItemKillBodyguar(GT("杀死保镖")));
+	menu->AddItem(new MenuItemMenu(("给予武器"), MenuItemGiveBodyguarWeapon(controller)));
+	menu->AddItem(new MenuItemEmptyBodyguar(("清空保镖")));
+	menu->AddItem(new MenuItemKillBodyguar(("杀死保镖")));
 
-	menu->AddItem(new MenuItemFeatureBodyguardInvincible(GT("保镖无敌")));		//保镖无敌
-	menu->AddItem(new MenuItemFeatureBodyguardInfAmmo(GT("无限子弹")));			//无限子弹
+	menu->AddItem(new MenuItemFeatureBodyguardInvincible(("保镖无敌")));		//保镖无敌
+	menu->AddItem(new MenuItemFeatureBodyguardInfAmmo(("无限子弹")));			//无限子弹
 	
 	return menu;
 }

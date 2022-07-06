@@ -63,7 +63,7 @@ class MenuItemVehicleBoost : public MenuItemSwitchable
 	{
 		bool newState = !GetState();
 		if (newState)
-			SetStatusText(GT("加速 / NUM9\n减速 / NUM6"));
+			SetStatusText(("加速 / NUM9\n减速 / NUM6"));
 		SetState(newState);
 	}
 	virtual void OnFrame()
@@ -144,17 +144,17 @@ class MenuItemPlayerFix : public MenuItemDefault
 			Ped horse = PED::GET_MOUNT(playerPed);
 			ENTITY::SET_ENTITY_HEALTH(horse, ENTITY::GET_ENTITY_MAX_HEALTH(horse, FALSE), FALSE);
 			PED::SET_PED_STAMINA(horse, 100.0);
-			SetStatusText(GT("玩家和马血量已满"));
+			SetStatusText(("玩家和马血量已满"));
 		}
 		else
 			if (PED::IS_PED_IN_ANY_VEHICLE(playerPed, FALSE))
 			{
 				Vehicle veh = PED::GET_VEHICLE_PED_IS_USING(playerPed);
 				ENTITY::SET_ENTITY_HEALTH(veh, ENTITY::GET_ENTITY_MAX_HEALTH(veh, FALSE), FALSE);
-				SetStatusText(GT("玩家和载具血量已满"));
+				SetStatusText(("玩家和载具血量已满"));
 			}
 			else
-				SetStatusText(GT("玩家血已满"));
+				SetStatusText(("玩家血已满"));
 	}
 public:
 	MenuItemPlayerFix(string caption)
@@ -279,7 +279,7 @@ class MenuItemPlayerSSuperJump : public MenuItemSwitchable
 		bool newstate = !GetState();
 		if (newstate)
 		{
-			SetStatusText(GT("\"真·超级跳\"与\"飞行模式\"有冲突，请不要同时使用"));
+			SetStatusText(("\"真·超级跳\"与\"飞行模式\"有冲突，请不要同时使用"));
 		}
 		PED::SET_PED_CAN_RAGDOLL(player, newstate);
 		SetState(newstate);
@@ -430,7 +430,7 @@ class MenuItemPlayerClearWanted : public MenuItemDefault
 			PURSUIT::CLEAR_CURRENT_PURSUIT();
 			PURSUIT::_SET_WANTED_INTENSITY_FOR_PLAYER(player, 0);
 		}
-		SetStatusText(GT("当前玩家悬赏:\n\n"
+		SetStatusText(("当前玩家悬赏:\n\n"
 			"悬赏: " + to_string(PURSUIT::_GET_BOUNTY_FOR_PLAYER(player) / 100) + "\n" +
 			"通缉等级: " + to_string(PURSUIT::_GET_WANTED_INTENSITY_FOR_PLAYER(player) / 100)));
 	}
@@ -716,7 +716,7 @@ class MenuItemSetHorseRank : public MenuItemValue
 		SA_SICKNESS,    // 疾病
 		SA_DIRTINESS,    // 肮脏
 		SA_DIRTINESSHAT,    // 脏兮兮
-		MTR_STRENGTH,    // 力量
+		MTR_STRENH,    // 力量
 		MTR_GRIT,   
 		MTR_INSTINCT,    // 直觉
 		PA_UNRULINESS,    // 野性
@@ -745,60 +745,60 @@ public:
 // 马匹选项
 MenuBase* CreatePlayerTransportMenu(MenuController* controller)
 {
-	MenuBase* menu = new MenuBase(new MenuItemTitle(GT("马匹选项")));
+	MenuBase* menu = new MenuBase(new MenuItemTitle(("马匹选项")));
 	controller->RegisterMenu(menu);
 
 
 
-	menu->AddItem(new MenuItemSetHorseRank(GT("默契等级"), GetBaseRank(ePedAttribute::PA_BONDING, true), 4, 1, ePedAttribute::PA_BONDING));
-	menu->AddItem(new MenuItemSetHorseRank(GT("生命值等级"), GetBaseRank(ePedAttribute::PA_HEALTH, true), 9, 1, ePedAttribute::PA_HEALTH));
-	menu->AddItem(new MenuItemSetHorseRank(GT("体力等级"), GetBaseRank(ePedAttribute::PA_STAMINA, true), 9, 1, ePedAttribute::PA_STAMINA));
-	menu->AddItem(new MenuItemSetHorseRank(GT("速度等级"), GetBaseRank(ePedAttribute::PA_SPEED, true), 9, 1, ePedAttribute::PA_SPEED));
-	menu->AddItem(new MenuItemSetHorseRank(GT("加速度等级"), GetBaseRank(ePedAttribute::PA_ACCELERATION, true), 9, 1, ePedAttribute::PA_ACCELERATION));
+	menu->AddItem(new MenuItemSetHorseRank(("默契等级"), GetBaseRank(ePedAttribute::PA_BONDING, true), 4, 1, ePedAttribute::PA_BONDING));
+	menu->AddItem(new MenuItemSetHorseRank(("生命值等级"), GetBaseRank(ePedAttribute::PA_HEALTH, true), 9, 1, ePedAttribute::PA_HEALTH));
+	menu->AddItem(new MenuItemSetHorseRank(("体力等级"), GetBaseRank(ePedAttribute::PA_STAMINA, true), 9, 1, ePedAttribute::PA_STAMINA));
+	menu->AddItem(new MenuItemSetHorseRank(("速度等级"), GetBaseRank(ePedAttribute::PA_SPEED, true), 9, 1, ePedAttribute::PA_SPEED));
+	menu->AddItem(new MenuItemSetHorseRank(("加速度等级"), GetBaseRank(ePedAttribute::PA_ACCELERATION, true), 9, 1, ePedAttribute::PA_ACCELERATION));
 
-	menu->AddItem(new MenuItemPlayerCores(GT("满·外围生命值"), 0, true));
-	menu->AddItem(new MenuItemPlayerCores(GT("满·外围黄金体力"), 1, true));
-	menu->AddItem(new MenuItemSetCoreRank(GT("满·核心黄金体力"), 0, true));
-	menu->AddItem(new MenuItemSetCoreRank(GT("满·核心黄金体力"), 1, true));
+	menu->AddItem(new MenuItemPlayerCores(("满·外围生命值"), 0, true));
+	menu->AddItem(new MenuItemPlayerCores(("满·外围黄金体力"), 1, true));
+	menu->AddItem(new MenuItemSetCoreRank(("满·核心黄金体力"), 0, true));
+	menu->AddItem(new MenuItemSetCoreRank(("满·核心黄金体力"), 1, true));
 
-	menu->AddItem(new MenuItemPlayerHorseInvincible(GT("马匹无敌")));
-	menu->AddItem(new MenuItemPlayerHorseUnlimStamina(GT("马匹无限体力")));
-	//menu->AddItem(new MenuItemVehicleBoost(GT("助推器")));
+	menu->AddItem(new MenuItemPlayerHorseInvincible(("马匹无敌")));
+	menu->AddItem(new MenuItemPlayerHorseUnlimStamina(("马匹无限体力")));
+	//menu->AddItem(new MenuItemVehicleBoost(("助推器")));
 
 	return menu;
 }
 
 MenuBase* CreatePlayerChangePlayerModel(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("主角")));
+	auto menu = new MenuBase(new MenuItemTitle(("主角")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemChangePlayerModel(GT("亚瑟"), "PLAYER_ZERO"));
-	menu->AddItem(new MenuItemChangePlayerModel(GT("约翰"), "Player_Three"));
+	menu->AddItem(new MenuItemChangePlayerModel(("亚瑟"), "PLAYER_ZERO"));
+	menu->AddItem(new MenuItemChangePlayerModel(("约翰"), "Player_Three"));
 
 	return menu;
 }
 
 MenuBase* CreatePlayerChangeModelHorseMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("马匹模型")));
+	auto menu = new MenuBase(new MenuItemListTitle(("马匹模型")));
 	controller->RegisterMenu(menu);
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
 
-	for each (auto & modelInfo in horse)
+	for (auto & modelInfo : horse)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemChangePlayerModel(kindAndModel.first, kindAndModel.second));
 	}
 
@@ -807,26 +807,26 @@ MenuBase* CreatePlayerChangeModelHorseMenu(MenuController* controller)
 
 MenuBase* CreatePlayerChangeModelAnimalMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("动物模型")));
+	auto menu = new MenuBase(new MenuItemTitle(("动物模型")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMenu(GT("马匹"), CreatePlayerChangeModelHorseMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("马匹"), CreatePlayerChangeModelHorseMenu(controller)));
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
 
-	for each (auto & modelInfo in animal)
+	for (auto & modelInfo : animal)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemChangePlayerModel(kindAndModel.first, kindAndModel.second));
 	}
 
@@ -835,39 +835,40 @@ MenuBase* CreatePlayerChangeModelAnimalMenu(MenuController* controller)
 
 MenuBase* CreatePlayerChangeModelHumanMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("玩家模型")));
+	auto menu = new MenuBase(new MenuItemTitle(("玩家模型")));
 	controller->RegisterMenu(menu);
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
 
-	for each (auto & modelInfo in ped)
+	for (auto & modelInfo : ped)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemChangePlayerModel(kindAndModel.first, kindAndModel.second));
 	}
+
 
 	return menu;
 }
 
 MenuBase* CreatePlayerChangeModelMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("修改模型")));
+	auto menu = new MenuBase(new MenuItemTitle(("修改模型")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMenu(GT("主角"), CreatePlayerChangePlayerModel(controller)));
-	menu->AddItem(new MenuItemMenu(GT("动物"), CreatePlayerChangeModelAnimalMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("人物"), CreatePlayerChangeModelHumanMenu(controller)));
-	menu->AddItem(new MenuFastItemDeathProtection(GT("死亡保护")));
+	menu->AddItem(new MenuItemMenu(("主角"), CreatePlayerChangePlayerModel(controller)));
+	menu->AddItem(new MenuItemMenu(("动物"), CreatePlayerChangeModelAnimalMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("人物"), CreatePlayerChangeModelHumanMenu(controller)));
+	menu->AddItem(new MenuFastItemDeathProtection(("死亡保护")));
 
 
 	return menu;
@@ -875,12 +876,12 @@ MenuBase* CreatePlayerChangeModelMenu(MenuController* controller)
 
 MenuBase* CreatePlayerWantedMenu(MenuController* controller)
 {
-	MenuBase* menu = new MenuBase(new MenuItemTitle(GT("通缉选项")));
+	MenuBase* menu = new MenuBase(new MenuItemTitle(("通缉选项")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemPlayerClearWanted(GT("清除悬赏"), true, false));
-	menu->AddItem(new MenuItemPlayerClearWanted(GT("清除通缉"), true, true));
-	menu->AddItem(new MenuItemPlayerNeverWanted(GT("不被通缉")));
+	menu->AddItem(new MenuItemPlayerClearWanted(("清除悬赏"), true, false));
+	menu->AddItem(new MenuItemPlayerClearWanted(("清除通缉"), true, true));
+	menu->AddItem(new MenuItemPlayerNeverWanted(("不被通缉")));
 
 
 	return menu;
@@ -889,13 +890,13 @@ MenuBase* CreatePlayerWantedMenu(MenuController* controller)
 // 设置荣誉值
 MenuBase* MenuItemMiscSetHonor(MenuController* controller)
 {
-	MenuBase* menu = new MenuBase(new MenuItemTitle(GT("设置荣誉值")));
+	MenuBase* menu = new MenuBase(new MenuItemTitle(("设置荣誉值")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMiscSetHonorS(GT("最高荣誉值"), -9999));
-	menu->AddItem(new MenuItemMiscSetHonorS(GT("提升一级"), -100));
-	menu->AddItem(new MenuItemMiscSetHonorS(GT("降低一级"), 100));
-	menu->AddItem(new MenuItemMiscSetHonorS(GT("最低荣誉值"), 9999));
+	menu->AddItem(new MenuItemMiscSetHonorS(("最高荣誉值"), -9999));
+	menu->AddItem(new MenuItemMiscSetHonorS(("提升一级"), -100));
+	menu->AddItem(new MenuItemMiscSetHonorS(("降低一级"), 100));
+	menu->AddItem(new MenuItemMiscSetHonorS(("最低荣誉值"), 9999));
 
 	return menu;
 }
@@ -921,20 +922,20 @@ public:
 // 其他选项
 MenuBase* CreatePlayerMiscMenu(MenuController* controller)
 {
-	MenuBase* menu = new MenuBase(new MenuItemTitle(GT("其他选项")));
+	MenuBase* menu = new MenuBase(new MenuItemTitle(("其他选项")));
 	controller->RegisterMenu(menu);
 
 	// _SET_PED_SCALE(Ped ped, float scale)
-	menu->AddItem(new MenuItemSetPlayerScal(GT("玩家大小")));
+	menu->AddItem(new MenuItemSetPlayerScal(("玩家大小")));
 
 
-	menu->AddItem(new MenuItemPlayerEveryoneIgnored(GT("被所有人忽略")));
-	menu->AddItem(new MenuItemPlayerNoiseless(GT("没有声音")));
-	menu->AddItem(new MenuItemPlayerSuperJump(GT("超级跳")));
-	menu->AddItem(new MenuItemPlayerSSuperJump(GT("真·超级跳")));
-	menu->AddItem(new MenuItemPlayerFastRun(GT("加速跑")));
-	menu->AddItem(new MenuItemPlayerBulletTime(GT("子弹时间[快捷键K]")));
-	menu->AddItem(new MenuItemPlayerFastHeal(GT("快速回血")));
+	menu->AddItem(new MenuItemPlayerEveryoneIgnored(("被所有人忽略")));
+	menu->AddItem(new MenuItemPlayerNoiseless(("没有声音")));
+	menu->AddItem(new MenuItemPlayerSuperJump(("超级跳")));
+	menu->AddItem(new MenuItemPlayerSSuperJump(("真·超级跳")));
+	menu->AddItem(new MenuItemPlayerFastRun(("加速跑")));
+	menu->AddItem(new MenuItemPlayerBulletTime(("子弹时间[快捷键K]")));
+	menu->AddItem(new MenuItemPlayerFastHeal(("快速回血")));
 
 	return menu;
 }
@@ -965,17 +966,17 @@ public:
 
 MenuBase* MenuItemMoneyAndGold(MenuController* controller)
 {
-	MenuBase* menu = new MenuBase(new MenuItemTitle(GT("设置现金")));
+	MenuBase* menu = new MenuBase(new MenuItemTitle(("设置现金")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemPlayerMoney(GT("现金 +100,000$"), 100000 * 100, false, false));
-	menu->AddItem(new MenuItemPlayerMoney(GT("现金 +10,000$"), 10000 * 100, false, false));
-	menu->AddItem(new MenuItemPlayerMoney(GT("现金 +1,000$"), 1000 * 100, false, false));
-	menu->AddItem(new MenuItemPlayerMoney(GT("现金 +100$"), 100 * 100, false, false));
-	menu->AddItem(new MenuItemPlayerMoney(GT("金钱 -100$"), 100 * 100, true, false));
-	menu->AddItem(new MenuItemPlayerMoney(GT("金钱 -1,000$"), 1000 * 100, true, false));
-	menu->AddItem(new MenuItemPlayerMoney(GT("金钱 -10,000$"), 10000 * 100, true, false));
-	menu->AddItem(new MenuItemPlayerMoney(GT("金钱 -100,000$"), 100000 * 100, true, false));
+	menu->AddItem(new MenuItemPlayerMoney(("现金 +100,000$"), 100000 * 100, false, false));
+	menu->AddItem(new MenuItemPlayerMoney(("现金 +10,000$"), 10000 * 100, false, false));
+	menu->AddItem(new MenuItemPlayerMoney(("现金 +1,000$"), 1000 * 100, false, false));
+	menu->AddItem(new MenuItemPlayerMoney(("现金 +100$"), 100 * 100, false, false));
+	menu->AddItem(new MenuItemPlayerMoney(("金钱 -100$"), 100 * 100, true, false));
+	menu->AddItem(new MenuItemPlayerMoney(("金钱 -1,000$"), 1000 * 100, true, false));
+	menu->AddItem(new MenuItemPlayerMoney(("金钱 -10,000$"), 10000 * 100, true, false));
+	menu->AddItem(new MenuItemPlayerMoney(("金钱 -100,000$"), 100000 * 100, true, false));
 
 	return menu;
 }
@@ -1004,7 +1005,7 @@ class MenuItemSetPlayerRank : public MenuItemValue
 		SA_SICKNESS,    // 疾病
 		SA_DIRTINESS,    // 肮脏
 		SA_DIRTINESSHAT,    // 脏兮兮
-		MTR_STRENGTH,    // 力量
+		MTR_STRENH,    // 力量
 		MTR_GRIT,
 		MTR_INSTINCT,    // 直觉
 		PA_UNRULINESS,    // 野性
@@ -1030,21 +1031,21 @@ public:
 // 玩家属性
 MenuBase* MenuItemPlayerRank(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("玩家属性")));
+	auto menu = new MenuBase(new MenuItemTitle(("玩家属性")));
 	controller->RegisterMenu(menu);
 
 
-	menu->AddItem(new MenuItemSetPlayerRank(GT("生命值等级"), GetBaseRank(ePedAttribute::PA_HEALTH), 9, 1, ePedAttribute::PA_HEALTH));
-	menu->AddItem(new MenuItemSetPlayerRank(GT("体力等级"), GetBaseRank(ePedAttribute::PA_STAMINA), 9, 1, ePedAttribute::PA_STAMINA));
-	menu->AddItem(new MenuItemSetPlayerRank(GT("死神之眼等级"), GetBaseRank(ePedAttribute::PA_SPECIALABILITY), 9, 1, ePedAttribute::PA_SPECIALABILITY));
+	menu->AddItem(new MenuItemSetPlayerRank(("生命值等级"), GetBaseRank(ePedAttribute::PA_HEALTH), 9, 1, ePedAttribute::PA_HEALTH));
+	menu->AddItem(new MenuItemSetPlayerRank(("体力等级"), GetBaseRank(ePedAttribute::PA_STAMINA), 9, 1, ePedAttribute::PA_STAMINA));
+	menu->AddItem(new MenuItemSetPlayerRank(("死神之眼等级"), GetBaseRank(ePedAttribute::PA_SPECIALABILITY), 9, 1, ePedAttribute::PA_SPECIALABILITY));
 
-	menu->AddItem(new MenuItemPlayerCores(GT("满·外围生命值"), 0));
-	menu->AddItem(new MenuItemPlayerCores(GT("满·外围体力"), 1));
-	menu->AddItem(new MenuItemPlayerCores(GT("满·外围死神之眼"), 2));
+	menu->AddItem(new MenuItemPlayerCores(("满·外围生命值"), 0));
+	menu->AddItem(new MenuItemPlayerCores(("满·外围体力"), 1));
+	menu->AddItem(new MenuItemPlayerCores(("满·外围死神之眼"), 2));
 
-	menu->AddItem(new MenuItemSetCoreRank(GT("满·核心生命值"), 0));
-	menu->AddItem(new MenuItemSetCoreRank(GT("满·核心体力"), 1));
-	menu->AddItem(new MenuItemSetCoreRank(GT("满·核心死神之眼"), 2));
+	menu->AddItem(new MenuItemSetCoreRank(("满·核心生命值"), 0));
+	menu->AddItem(new MenuItemSetCoreRank(("满·核心体力"), 1));
+	menu->AddItem(new MenuItemSetCoreRank(("满·核心死神之眼"), 2));
 
 
 	return menu;
@@ -1116,7 +1117,7 @@ class PlayerChangeClothing : public MenuItemDefault
 
 
 		SetStatusText(to_string(textureId));
-		//SetStatusText(GT("修改完成"));
+		//SetStatusText(("修改完成"));
 	}
 
 public:
@@ -1127,11 +1128,11 @@ public:
 // 修改服装
 MenuBase* CreatePlayerChangeClothingMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("修改服装")));
+	auto menu = new MenuBase(new MenuItemTitle(("修改服装")));
 	controller->RegisterMenu(menu);
 
 
-	menu->AddItem(new PlayerChangeClothing(GT("修改服装")));
+	menu->AddItem(new PlayerChangeClothing(("修改服装")));
 
 
 	return menu;
@@ -1142,24 +1143,24 @@ MenuBase* CreatePlayerChangeClothingMenu(MenuController* controller)
 
 MenuBase* CreatePlayerMenu(MenuController* controller)
 {
-	MenuBase* menu = new MenuBase(new MenuItemTitle(GT("玩家选项")));
+	MenuBase* menu = new MenuBase(new MenuItemTitle(("玩家选项")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemMenu(GT("马匹选项"), CreatePlayerTransportMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("修改模型"), CreatePlayerChangeModelMenu(controller)));
-	//menu->AddItem(new MenuItemMenu(GT("修改服装"), CreatePlayerChangeClothingMenu(controller)));	// 无效
+	menu->AddItem(new MenuItemMenu(("马匹选项"), CreatePlayerTransportMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("修改模型"), CreatePlayerChangeModelMenu(controller)));
+	//menu->AddItem(new MenuItemMenu(("修改服装"), CreatePlayerChangeClothingMenu(controller)));	// 无效
 
-	menu->AddItem(new MenuItemMenu(GT("通缉选项"), CreatePlayerWantedMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("设置荣誉值"), MenuItemMiscSetHonor(controller)));
-	menu->AddItem(new MenuItemMenu(GT("设置现金"), MenuItemMoneyAndGold(controller)));
-	menu->AddItem(new MenuItemMenu(GT("设置属性"), MenuItemPlayerRank(controller)));
+	menu->AddItem(new MenuItemMenu(("通缉选项"), CreatePlayerWantedMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("设置荣誉值"), MenuItemMiscSetHonor(controller)));
+	menu->AddItem(new MenuItemMenu(("设置现金"), MenuItemMoneyAndGold(controller)));
+	menu->AddItem(new MenuItemMenu(("设置属性"), MenuItemPlayerRank(controller)));
 
 
-	menu->AddItem(new MenuItemPlayerFix(GT("瞬间满血")));
-	menu->AddItem(new MenuItemPlayerUnlimAbility(GT("无限死神之眼")));
-	menu->AddItem(new MenuItemPlayerInvincible(GT("玩家无敌")));
-	menu->AddItem(new MenuItemPlayerUnlimStamina(GT("无限体力")));
-	menu->AddItem(new MenuItemMenu(GT("其他选项"), CreatePlayerMiscMenu(controller)));
+	menu->AddItem(new MenuItemPlayerFix(("瞬间满血")));
+	menu->AddItem(new MenuItemPlayerUnlimAbility(("无限死神之眼")));
+	menu->AddItem(new MenuItemPlayerInvincible(("玩家无敌")));
+	menu->AddItem(new MenuItemPlayerUnlimStamina(("无限体力")));
+	menu->AddItem(new MenuItemMenu(("其他选项"), CreatePlayerMiscMenu(controller)));
 
 	return menu;
 }

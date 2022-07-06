@@ -47,7 +47,7 @@ class MenuItemPlayerTeleportToMarker : public MenuItemDefault
 	{
 		if (!MAP::IS_WAYPOINT_ACTIVE())
 		{
-			SetStatusText(GT("地图上没有目标点"));
+			SetStatusText(("地图上没有目标点"));
 			return;
 		}
 
@@ -66,7 +66,7 @@ class MenuItemPlayerTeleportToMarker : public MenuItemDefault
 				100.0, 150.0, 50.0, 0.0, 200.0, 250.0, 300.0, 350.0, 400.0,
 				450.0, 500.0, 550.0, 600.0, 650.0, 700.0, 750.0, 800.0
 			};
-			for each (float height in groundCheckHeight)
+			for (float height : groundCheckHeight)
 			{
 				ENTITY::SET_ENTITY_COORDS_NO_OFFSET(e, coords.x, coords.y, height, 0, 0, 1);
 				WaitAndDraw(100);
@@ -78,7 +78,7 @@ class MenuItemPlayerTeleportToMarker : public MenuItemDefault
 			}
 		}
 
-		// GTA5式传送
+		// A5式传送
 		playerPos = ENTITY::GET_ENTITY_COORDS(PLAYER::PLAYER_PED_ID(), false, false);
 		newPos = coords;
 		TPing = true;
@@ -101,11 +101,11 @@ class MenuFastItemPlayerTeleportToMarker : public MenuItemSwitchable
 	{
 		bool newState = !GetState();
 		if (newState) {
-			SetStatusText(GT("快速传送已开启"));
+			SetStatusText(("快速传送已开启"));
 		}
 		else
 		{
-			SetStatusText(GT("快速传送已关闭"));
+			SetStatusText(("快速传送已关闭"));
 		}
 		SetState(newState);
 	}
@@ -118,7 +118,7 @@ class MenuFastItemPlayerTeleportToMarker : public MenuItemSwitchable
 		{
 			if (!MAP::IS_WAYPOINT_ACTIVE())
 			{
-				SetStatusText(GT("地图上没有目标点"));
+				SetStatusText(("地图上没有目标点"));
 				return;
 			}
 			Vector3 coords = MAP::_GET_WAYPOINT_COORDS();
@@ -134,7 +134,7 @@ class MenuFastItemPlayerTeleportToMarker : public MenuItemSwitchable
 					100.0, 150.0, 50.0, 0.0, 200.0, 250.0, 300.0, 350.0, 400.0,
 					450.0, 500.0, 550.0, 600.0, 650.0, 700.0, 750.0, 800.0
 				};
-				for each (float height in groundCheckHeight)
+				for (float height : groundCheckHeight)
 				{
 					ENTITY::SET_ENTITY_COORDS_NO_OFFSET(e, coords.x, coords.y, height, 0, 0, 1);
 					WaitAndDraw(100);
@@ -146,7 +146,7 @@ class MenuFastItemPlayerTeleportToMarker : public MenuItemSwitchable
 				}
 			}
 
-			// GTA5式传送
+			// A5式传送
 			playerPos = ENTITY::GET_ENTITY_COORDS(PLAYER::PLAYER_PED_ID(), false, false);
 			newPos = coords;
 			TPing = true;
@@ -162,7 +162,7 @@ public:
 	}
 };
 
-class MenuFastItemGTA5TPModer : public MenuItemSwitchable
+class MenuFastItemA5TPModer : public MenuItemSwitchable
 {
 	float initialZForGroundTest = 0;
 	Vector3 location = { 0,0,0 };
@@ -237,7 +237,7 @@ class MenuFastItemGTA5TPModer : public MenuItemSwitchable
 	}
 
 public:
-	MenuFastItemGTA5TPModer(string caption)
+	MenuFastItemA5TPModer(string caption)
 		: MenuItemSwitchable(caption) {}
 };
 
@@ -252,7 +252,7 @@ class MenuFastItemShowCurrentCoordinates : public MenuItemDefault
 		string y = to_string(coords.y);
 		string z = to_string(coords.z);
 
-		SetStatusText(GT("当前坐标为:x:" + x + ",y:" + y + ",z:" + z + "."));
+		SetStatusText(("当前坐标为:x:" + x + ",y:" + y + ",z:" + z + "."));
 		addLogs("显示坐标：" + to_string(coords.x) + "," + to_string(coords.y) + "," + to_string(coords.z));
 	}
 public:
@@ -263,29 +263,29 @@ public:
 //传送列表
 MenuBase* CreatePlayerTeleportMenu(MenuController* controller)
 {
-	MenuBase* menu = new MenuBase(new MenuItemListTitle(GT("传送选项")));
+	MenuBase* menu = new MenuBase(new MenuItemListTitle(("传送选项")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemPlayerTeleportToMarker(GT("传送到标记点[快捷键F9]")));
-	menu->AddItem(new MenuFastItemPlayerTeleportToMarker(GT("快速传送")));
-	//menu->AddItem(new MenuFastItemGTA5TPModer(GT("GTA5式传送")));
-	menu->AddItem(new MenuFastItemShowCurrentCoordinates(GT("显示当前坐标")));
+	menu->AddItem(new MenuItemPlayerTeleportToMarker(("传送到标记点[快捷键F9]")));
+	menu->AddItem(new MenuFastItemPlayerTeleportToMarker(("快速传送")));
+	//menu->AddItem(new MenuFastItemA5TPModer(("A5式传送")));
+	menu->AddItem(new MenuFastItemShowCurrentCoordinates(("显示当前坐标")));
 
 
 	unordered_map<string, vector<pair<string, Vector3>>> breeds;
-	for each (auto & modelInfo in teleport)
+	for (auto & modelInfo : teleport)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.pos });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemPlayerTeleport(kindAndModel.first, kindAndModel.second));
 	}
 

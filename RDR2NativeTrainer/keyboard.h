@@ -60,7 +60,7 @@ void ResetKeyState(DWORD key);
 struct VirtualKeysWithNames
 {
 	int keyCode;
-	char* name;
+	const char* name;
 };
 
 // °´¼ü¼üÖµ¶Ô

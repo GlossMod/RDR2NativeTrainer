@@ -71,7 +71,7 @@ public:
 //MenuBase* CreateWagonSpawnerMenu(MenuController* controller,
 //	MenuItemSwitchable* menuItemWrapIn, MenuItemSwitchable* menuItemSetProperly, bool noPeds)
 //{
-//	auto menu = new MenuBase(new MenuItemListTitle(GT("拖车选项")));
+//	auto menu = new MenuBase(new MenuItemListTitle(("拖车选项")));
 //	controller->RegisterMenu(menu);
 //
 //	for each (auto & model in vehicle)
@@ -83,33 +83,33 @@ public:
 
 MenuBase* CreateVehicleSpawnerMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemTitle(GT("载具选项")));
+	auto menu = new MenuBase(new MenuItemTitle(("载具选项")));
 	controller->RegisterMenu(menu);
 
-	auto menuItemWrapIn = new MenuItemSwitchable(GT("生成后进入"));
+	auto menuItemWrapIn = new MenuItemSwitchable(("生成后进入"));
 	menu->AddItem(menuItemWrapIn);
 
-	auto menuItemSetProperly = new MenuItemSwitchable(GT("摆正"));
+	auto menuItemSetProperly = new MenuItemSwitchable(("摆正"));
 	menu->AddItem(menuItemSetProperly);
 
-	auto Aslongasthetrailer = new MenuItemSwitchable(GT("只要拖车"));
+	auto Aslongasthetrailer = new MenuItemSwitchable(("只要拖车"));
 	menu->AddItem(Aslongasthetrailer);
 
 	unordered_map<string, vector<pair<string, string>>> breeds;
-	for each (auto & modelInfo in vehicle)
+	for (auto & modelInfo : vehicle)
 	{
 		size_t pos = modelInfo.name.find_first_of(' ');
 		string breed = modelInfo.name.substr(0, pos);
 		string kind = modelInfo.name.substr(pos + 1, modelInfo.name.size() - pos - 1);
 		breeds[breed].push_back({ kind, modelInfo.code });
 	}
-	for each (auto & breed in breeds)
+	for (auto & breed : breeds)
 	{
 		auto breedMenu = new MenuBase(new MenuItemListTitle(breed.first));
 		controller->RegisterMenu(breedMenu);
 		menu->AddItem(new MenuItemMenu(breed.first, breedMenu));
 		
-		for each (auto & kindAndModel in breed.second)
+		for (auto & kindAndModel : breed.second)
 			breedMenu->AddItem(new MenuItemSpawnVehicle(kindAndModel.first, kindAndModel.second, { 1.0, 5.0, 0.0 }, 90.0, menuItemWrapIn, menuItemSetProperly, true, Aslongasthetrailer));
 
 	}

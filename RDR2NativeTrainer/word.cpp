@@ -34,12 +34,12 @@ public:
 // 下雪选项
 MenuBase* CreateSnowMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("下雪选项")));
+	auto menu = new MenuBase(new MenuItemListTitle(("下雪选项")));
 	controller->RegisterMenu(menu);
 
-	menu->AddItem(new MenuItemWordSnow(GT("关闭"), 1));
-	menu->AddItem(new MenuItemWordSnow(GT("小雪覆盖"), 2));
-	menu->AddItem(new MenuItemWordSnow(GT("大雪覆盖"), 3));
+	menu->AddItem(new MenuItemWordSnow(("关闭"), 1));
+	menu->AddItem(new MenuItemWordSnow(("小雪覆盖"), 2));
+	menu->AddItem(new MenuItemWordSnow(("大雪覆盖"), 3));
 
 	return menu;
 }
@@ -98,15 +98,15 @@ public:
 // 世界选项
 MenuBase* CreateWordMenu(MenuController* controller)
 {
-	auto menu = new MenuBase(new MenuItemListTitle(GT("世界选项")));
+	auto menu = new MenuBase(new MenuItemListTitle(("世界选项")));
 	controller->RegisterMenu(menu);
 
 
-	menu->AddItem(new MenuItemMenu(GT("天气选项"), CreateWeatherMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("时间选项"), CreateTimeMenu(controller)));
-	menu->AddItem(new MenuItemMenu(GT("下雪选项"), CreateSnowMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("天气选项"), CreateWeatherMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("时间选项"), CreateTimeMenu(controller)));
+	menu->AddItem(new MenuItemMenu(("下雪选项"), CreateSnowMenu(controller)));
 
-	menu->AddItem(new CreateWordNobody(GT("没有行人")));
+	menu->AddItem(new CreateWordNobody(("没有行人")));
 
 
 

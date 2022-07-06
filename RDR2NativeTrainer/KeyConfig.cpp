@@ -28,7 +28,7 @@ void read_config_file()
 
 	if (!file.is_open()) 
 	{
-		PrintSubtitle(GT("按键配置读取失败"));
+		PrintSubtitle(("按键配置读取失败"));
 		config = result; //使用默认配置
 		return;
 	}
@@ -46,12 +46,12 @@ void read_config_file()
 			// 键盘按键
 			if (!json["hotKey"].isNull())
 			{
-				for each (auto var in json["hotKey"].getMemberNames())
+				for (auto var : json["hotKey"].getMemberNames())
 				{
 					//result->get_key_config()->set_key((char*)var.c_str(), (char*)json["hotKey"][var].asString().c_str(), false, false, false);
 
 					KeyConfig* buttonConfig = new KeyConfig();
-					for each (auto var2 in json["hotKey"][var])
+					for (auto var2 : json["hotKey"][var])
 					{
 						buttonConfig->add_button(var2.asString());
 						addLogs("写入按键配置{" + var + "}为：" + var2.asString());
@@ -64,7 +64,7 @@ void read_config_file()
 			// 手柄按键
 			if (!json["controller"].isNull())
 			{
-				for each (auto var in json["controller"].getMemberNames())
+				for (auto var : json["controller"].getMemberNames())
 				{
 					if (var == "EnableController")
 					{
@@ -75,7 +75,7 @@ void read_config_file()
 
 						ControllerButtonConfig* buttonConfig = new ControllerButtonConfig();
 
-						for each (auto var2 in json["controller"][var])
+						for (auto var2 : json["controller"][var])
 						{
 							buttonConfig->add_button(var2.asString());
 
@@ -86,18 +86,18 @@ void read_config_file()
 					}
 				}
 			}
-			PrintSubtitle(GT("用户配置写入完成"));
+			PrintSubtitle(("用户配置写入完成"));
 		}
 		catch (const std::exception& e)
 		{
 			addLogs(e.what());
-			PrintSubtitle(GT("初始化失败,将使用默认配置"));
+			PrintSubtitle(("初始化失败,将使用默认配置"));
 			config = result; //使用默认配置
 		}
 	}
 	else 
 	{
-		PrintSubtitle(GT("配置读取失败,Config.json5格式错误"));
+		PrintSubtitle(("配置读取失败,Config.json5格式错误"));
 	}
 	file.close();
 
@@ -178,7 +178,7 @@ void KeyInputConfig::set_control(char* function, ControllerButtonConfig* config)
 	//ss << "Controller function " << function << " being set, has " << config->buttonCodes.size() << " buttons within";
 	//addLogs(ss.str());
 
-	for each (ButtonsWithNames btn in config->buttonCodes)
+	for (ButtonsWithNames btn : config->buttonCodes)
 	{
 		//std::ostringstream ss;
 		//ss << "\tIncluded button " << btn.name << " and value " << btn.buttonCode;
@@ -409,7 +409,7 @@ KeyInputConfig::KeyInputConfig()
 
 KeyInputConfig::~KeyInputConfig()
 {
-	for each (std::pair<std::string, KeyConfig*> conf in this->keyConfigs)
+	for (std::pair<std::string, KeyConfig*> conf : this->keyConfigs)
 	{
 		delete conf.second;
 	}

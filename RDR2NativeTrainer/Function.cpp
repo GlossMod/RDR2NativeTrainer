@@ -8,9 +8,9 @@ void publicSetStatusText(string text, DWORD time)
 	int Fuck_Speed = 1;
 	clock_t Time_FuckStart = clock();
 
-	time = GetTickCount() + time;
+	time = GetTickCount64() + time;
 
-	while (GetTickCount() < time)
+	while (GetTickCount64() < time)
 	{
 		//UI::SET_TEXT_SCALE(0.55, 0.55);
 		UIDEBUG::_BG_SET_TEXT_SCALE(0.55, 0.55);
@@ -63,64 +63,6 @@ string GT(const string& strGBK)
 #pragma comment(lib,"WinInet.lib")
 //using namespace nlohmann;
 using json = Json::Value;
-
-////对网页进行转码
-//wchar_t* Convert(CString str, int targetCodePage)
-//{
-//	// LPCTSTR
-//	// LPCCH
-//	int iunicodeLen = MultiByteToWideChar(targetCodePage, 0, (LPCCH)str.GetBuffer(), -1, NULL, 0);
-//	wchar_t* pUnicode = NULL;
-//	pUnicode = new wchar_t[iunicodeLen + 1];
-//	memset(pUnicode, 0, (iunicodeLen + 1) * sizeof(wchar_t));
-//	MultiByteToWideChar(targetCodePage, 0, (LPCCH)str.GetBuffer(), -1, (LPWSTR)pUnicode, iunicodeLen);//映射一个字符串到一个款字节中
-//	return pUnicode;
-//}
-//
-////获取网页的源码，参数1为网页链接，2为缓冲区指针*/
-//bool GetHtml(LPCTSTR szURL, CString& getbuf)
-//{
-//	HINTERNET	hInternet, hUrl;
-//	char		buffer[1124];
-//	WCHAR		wBuffer[1124];
-//
-//	DWORD		dwBytesRead = 0;
-//	DWORD		dwBytesWritten = 0;
-//	BOOL		bIsFirstPacket = true;
-//	BOOL		bRet = true;
-//	int			nNowcopyDate = 0;
-//
-//	hInternet = InternetOpen(_T("Mozilla/4.0 (compatible)"), INTERNET_OPEN_TYPE_PRECONFIG, NULL, INTERNET_INVALID_PORT_NUMBER, 0);//初始化应用程序，使用WinNet
-//	if (hInternet == NULL)
-//		return FALSE;
-//
-//	hUrl = InternetOpenUrl(hInternet, szURL, NULL, 0, INTERNET_FLAG_RELOAD, 0);//打开一个资源 ftp，gopher，http开头
-//
-//	if (hUrl == NULL)
-//	{
-//		DWORD m = GetLastError();
-//		return FALSE;
-//	}
-//	do
-//	{
-//		memset(buffer, 0, sizeof(char) * 1124);
-//		InternetReadFile(hUrl, buffer, sizeof(char) * 1024, &dwBytesRead);
-//		bIsFirstPacket = false;
-//		nNowcopyDate = +dwBytesRead;
-//		wchar_t* punicode;
-//		punicode = Convert(buffer, CP_UTF8);// 对源码进行转码   第二个参数为网页的编码格式
-//		
-//		//CString strTmp = CString(buffer);	
-//
-//		getbuf += _T("\r\n");
-//		getbuf += punicode;
-//		delete punicode;
-//	} while (dwBytesRead > 0);
-//
-//	InternetCloseHandle(hUrl);
-//	InternetCloseHandle(hInternet);
-//	return TRUE;
-//}
 
 //对网页进行转码  
 wchar_t* Convert(CString str, int targetCodePage)
@@ -186,7 +128,7 @@ bool GetHtml(LPCTSTR szURL, CString& getbuf)
 //检测更新
 string CheckUpdates()
 {
-	double nowV = 0.941;	
+	double nowV = 0.951;	
 	std::stringstream str;
 	str << std::setprecision(3) << nowV;
 	string v = "当前版本 " + str.str() + " ";
@@ -200,30 +142,36 @@ string CheckUpdates()
 		{
 			//retbuf值：
 			//{"id":"147160","mods_version":"0.81","mods_author":"◕小莫◕","mods_click_cnt":295451,"mods_download_cnt":90961,"mods_mark_cnt":37389,"mods_collection_cnt":19098,"mods_updateTime":"2020-03-29 15:39:57"}
-			std::string str = CT2A(retbuf.GetString());
-			//addLogs(str);
-			if (reader.parse(str, root)) {
-				//js = json::parse((string)retbuf);	//str to json
-				string newVs = root["mods_version"].asString();	//获取版本
-				double newVf = stof(newVs);			//转为 double
-				const double eps = 1e-6;//double 判断大小需要对大的数 - eps 或对小的数 + eps
-				// 判断是否有更新
-				if (newVf - eps > nowV)		return GT(v + "[有更新可用]");
-				else						return GT(v + "[已是最新版本]");
+			// 解析返回的内容
+			if (reader.parse(retbuf.GetBuffer(), root))
+			{
+				//root["mods_version"];
+				//v += "最新版本 " + root["mods_version"].asString() + " ";
+				if (root["mods_version"].asString() != str.str())
+				{
+					v += "[有更新可用]";
+				}
+				else
+				{
+					v += "[已是最新版本]";
+				}
 			}
-			else {
-				return GT(v + "[无法检测更新,数据解析失败]");
+			else
+			{
+				v += "[无法检测更新,数据解析失败！]";
 			}
+			
+			return v;
 			
 		}
 		else
 		{
-			return GT(v + "[无法检测更新,数据读取失败]");
+			return (v + "[无法检测更新,数据读取失败]");
 		}
 	}
 	catch (const std::exception&)
 	{
-		return GT(v + "[错误：无法检测更新]");
+		return (v + "[错误：无法检测更新]");
 	}
 }
 
@@ -317,6 +265,7 @@ void drawBoxOutline(float x, float y, float radius, float thickness, int r, int 
 	DrawGameRect(xLeft + thickness * aspectRatio / 2.0f, yTop + radius, thickness * aspectRatio, length, r, g, b, a);//left bar
 	DrawGameRect(xRight - thickness * aspectRatio / 2.0f, yTop + radius, thickness * aspectRatio, length, r, g, b, a);//right bar
 }
+
 void drawBoxOutline(float x, float y, float x_radius, float y_radius, float thickness, int r, int g, int b, int a)
 {
 	int rx, ry;//originally float but int does make more sense...
@@ -423,3 +372,22 @@ float getHeightAboveGround(Vector3 position)
 	GAMEPLAY::GET_GROUND_Z_FOR_3D_COORD(position.x, position.y, 1000.0f, &groundZ, true);
 	return groundZ;
 }
+
+
+//
+//// 用户操作记录保存
+//class UserConfig {
+//	
+//	std::string configFilePath = "\\RDR2NativeTrainer\\UserConfig.json";
+//	// 配置储存对象 json数据
+//	json config; 
+//
+//public:
+//	UserConfig() {
+//		
+//	}
+//	void Save(string key) 
+//	{
+//		
+//	}
+//};
