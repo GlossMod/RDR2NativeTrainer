@@ -1,4 +1,9 @@
-# 荒野大镖客内置修改器 RNT
+[![](https://img.shields.io/badge/作者-小莫-blue?logo=Cloudera)](https://www.aoe.top/) [![](https://img.shields.io/badge/%E4%BE%9D%E8%B5%96-Script%20Hook%20RDR2-blue?logo=AdGuard)](http://www.dev-c.com/rdr2/scripthookrdr2)  ![](https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E6%8A%A2%E5%85%88%E4%BD%93%E9%AA%8C%20%E6%B5%8B%E8%AF%95%E7%89%88-blue?logo=Dash)  ![](https://img.shields.io/badge/版本-0.951-blue?logo=Indeed)  ![](https://img.shields.io/badge/更新时间-2022--07--17-blue?logo=Fastly) [![](https://img.shields.io/badge/%E5%A4%A7%E5%B0%8F-261.33KB-blue?logo=DocuSign)](https://dmod.3dmgame.com/mod/Download/147160)
+
+
+
+# 荒野大镖客2 线下内置修改器[RDR2 Native Trainer（RNT）] 
+
 
 荒野大镖客2线下内置修改器，决定命名为RDR2 Native Trainer，简称RNT；
 
@@ -16,11 +21,12 @@
 
 
 ### 安装方法：
-- 先下载[Script Hook RDR2](https://mod.3dmgame.com/mod/145572 "Script Hook RDR2")，将“ScriptHookRDR2.dll”和“dinput8.dll”放到游戏根目录
+- 先下载[Script Hook RDR2](http://www.dev-c.com/rdr2/scripthookrdr2 "Script Hook RDR2")，将“ScriptHookRDR2.dll”和“dinput8.dll”放到游戏根目录
+- ~~下载[RDR 2 Asi Loader](https://www.rdr2mods.com/downloads/rdr2/tools/9-rdr-2-asi-loader/ "RDR 2 Asi Loader")，将“version.dll”放入游戏根目录~~**（“ScriptHookRDR2”已更新，之前安装过RDR 2 Asi Loader的可以删除换Script Hook RDR2了）**
 - 将下载的“RDR2NativeTrainer.asi”和“RDR2NativeTrainer”文件夹放到游戏根目录
 - 进游戏按F3打开界面
 
-视频说明：https://www.bilibili.com/video/BV1zi4y1b7vm
+视频：https://www.bilibili.com/video/BV1zi4y1b7vm
 
 ### 卸载方法
 从游戏目录中删除“RDR2NativeTrainer.asi”和“RDR2NativeTrainer”文件夹即可
@@ -61,11 +67,53 @@ F3 打开修改器界面
 
 
 ### 视频演示：
-	v0.8：https://www.bilibili.com/video/av95328192
-	v0.3：https://www.bilibili.com/video/av78590615
+https://www.bilibili.com/video/av95328192
 
+### 常见问题：
+问：提示未找到“RDR2NativeTrainer.json”怎么办？
+> “RDR2NativeTrainer”文件夹和“RDR2NativeTrainer.asi”都需要放入游戏目录；
+如果放了还提示未找到，可能是游戏目录需要管理员权限才能访问，右键游戏目录文件夹→属性→权限->全部允许
+
+问：修改器乱码怎么办？
+> 目前，我用的是“简体中文”，你的游戏语言也需要使用“简体中文”，可在“Rockstar Games Launcher”中进行修改游戏语言
+
+问：如何添加自己想要的武器/马匹/角色？
+> 使用json格式编辑“RDR2NativeTrainer/RDR2NativeTrainer.json”文件中的内容即可，只要你知道模型代码就可以添加，代码可以使用OpenIV打开游戏文件进行查找，或者在https://www.rdr2mods.com/wiki/ 中翻阅相关数据表
+
+问：游戏更新了我需要等待修改器更新吗？
+> 通常情况下，游戏更新修改器是不需要同步更新的，即使游戏更新修改器照样能正常使用，如果修改器因为游戏更新而导致无法使用，可以先将“RDR2NativeTrainer.asi”文件删除，等待我更新后再下载新版本。
+
+问：打开游戏提示"SCRIPT HOOK RDR2 CRITICAL ERROR FATAL : Can't find native 0xA1253A3C870B6843" 怎么办？
+> 造成这个问题的原因是R星在更新 1.0.1436.25 版本时，对游戏进行了一点点调整，导致修改器中有一个哈希“0xD79334A4BB99BAD1”失效，为了解决这个问题，我（们）使用了“0xA1253A3C870B6843”和“0x16794E044C9EFB58”这两个哈希来代替原先失效的“0xD79334A4BB99BAD1”，
+> 啊，我感觉扯了那么多你可能已经头晕了，我就直接说解决方法吧，
+> - 游戏版本大于『1.0.1436.25』的玩家请下载v0.921或更高版本的修改器 【正版玩家】
+> - 游戏版本小于『1.0.1436.25』的玩家请下载v0.913或更低版本的修改器 【学习版玩家】
+> - 历史版本的修改器可以在 https://pan.aoe.top/mod/RDR2/RDR2NativeTrainer/ 中找到
+
+> 荒野大镖客是一款非常棒的跨时代游戏，如有能力请支持正版！
+
+
+
+问：我要如何知道修改器更新了呢？
+> 修改器菜单首页中最后一栏会联网检查更新，如果更新了修改器菜单会提示“有更新可以”，进入菜单即可打开此Mod站页面。
+
+问：我没有小键盘，要怎么操作呢？
+> 你可以自行修改“RDR2NativeTrainer/Config.json5”文件中的按键配置，按键键值可以在https://blog.csdn.net/JoeBlackzqq/article/details/46442121 找到
+
+问：手柄没用怎么办？
+> 手柄适配现在还有点问题，大部分手柄都没反应。。。我还得研究一下这玩意到底咋适配。以后可能会解决这个问题
+
+### 鸣谢名单
+** Rockstar Games、Alexander Blade、LMS、510783497b、c诚、审判之神、RampageDev **
 
 ### 更新日志：
+
+v0.951:
+本次更新 更新了 `RDR2NativeTrainer.asi`，更新时只需要替换`RDR2NativeTrainer.asi`即可
+- 更新修复部分用户出现方块乱码的问题
+| --感谢 XMDS 大佬提供的的解决方法，修复了困扰我3年的问题
+
+[collapse title="历史更新"]
 v0.941
 本次更新 更新了 `RDR2NativeTrainer.asi`和`RDR2NativeTrainer.json`文件，更新时请替换这两个文件
 |-- 进阶:RDR2NativeTrainer.json中添加了`medicine`和`newPed`节点，若您之前有改过json文件，只需将新json文件中的`medicine`和`newPed`节点添加即可！
@@ -73,7 +121,6 @@ v0.941
 - 添加刷出草药功能 (在创建选项->创建草药中)
 - 新增 68 种草药的创建,已全部翻译
 - 新增 618 条新的PED（在 创建选项->新PED 中）,还没翻译，如有大佬有时间可以帮忙翻译一下，谢谢
-
 
 v0.931
 本次更新只需更新`RDR2NativeTrainer.asi`文件，其他均可不动
@@ -83,7 +130,7 @@ v0.931
 - 新增设置 玩家/马匹 核心生命值功能
 |-- 玩家和马匹均可设置外围和核心 生命值、体力、死神之眼 为金色
 - 新增设置马匹好感度功能
-|-- 该功能要感谢[RampageDev](https://www.nexusmods.com/users/91375888 "RampageDev")大佬的指导
+|-- 此功能要感谢[RampageDev](https://www.nexusmods.com/users/91375888 "RampageDev")大佬的指导
 - 新增“世界”选项，将天气、时间加入，并新增 `下雪`和`没人行人`选项
 - 新增设置玩家大小功能（在`玩家选项`->`其他选项`中）
 - 新增`追踪子弹`功能
@@ -91,11 +138,26 @@ v0.931
 - 整合超级子弹（即闪电子弹、超级爆炸子弹、喷泉子弹）功能，现在可在35种超级子弹之间随意切换了
 
 
+v0.922
+- 修复当配置读取失败时方向键和快捷键都无效的问题
+- 优化荣誉值修改的方式（不会再有人来打你了）
+- 优化金钱修改方式（看起来更加的人性化了）
+
+
+v0.921
+- 更新支持游戏版本1.0.1436.25
+- 突然发现好像我没写减少现金的功能，加上了
+
+v0.913
+
+- 修复刷出动物时会报错的问题
+- 手柄适配还有点问题，需要修复，
+
 v0.912
 
 - 添加键盘多键适配,现在可以配置多个配置了
 - 添加保镖、传送、模型 选项的日志写入
-- 本次更新了`RDR2NativeTrainer.asi`和`Config.json5`文件，单独替换即可
+- 本次更新了`RDR2NativeTrainer.asi`和`Config.json5`文件，更新的话单独替换即可
 
 v0.911:
 
@@ -197,4 +259,8 @@ v0.2：
 - 快速传送现在默认为“开”，如果不喜欢可以手动在“传送->快速传送”里面关闭
 - 更新了动物名称的翻译
 - 添加了几个新的传送坐标
+
+v0.1:
+- 初始发布
+[/collapse]
 
