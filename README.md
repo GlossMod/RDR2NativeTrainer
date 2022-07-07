@@ -104,7 +104,8 @@ https://www.bilibili.com/video/av95328192
 > 手柄适配现在还有点问题，大部分手柄都没反应。。。我还得研究一下这玩意到底咋适配。以后可能会解决这个问题
 
 ### 鸣谢名单
-** Rockstar Games、Alexander Blade、LMS、510783497b、c诚、审判之神、RampageDev **
+
+**Rockstar Games、Alexander Blade、LMS、510783497b、c诚、审判之神、RampageDev、XMDS**
 
 ### 更新日志：
 
