@@ -26,7 +26,7 @@
 - 将下载的“RDR2NativeTrainer.asi”和“RDR2NativeTrainer”文件夹放到游戏根目录
 - 进游戏按F3打开界面
 
-视频：https://www.bilibili.com/video/BV1zi4y1b7vm
+视频：https://www.youtube.com/watch?v=z6XA7RXhxGI
 
 ### 卸载方法
 从游戏目录中删除“RDR2NativeTrainer.asi”和“RDR2NativeTrainer”文件夹即可
@@ -65,9 +65,6 @@ F3 打开修改器界面
 
 2.如果你是从0.902之前的版本进行升级，且配置过`RDR2NativeTrainer.json`文件，可以将游戏目录中的`RDR2NativeTrainer.json`文件移动到“RDR2NativeTrainer”文件夹中即可,因为这个文件我压根就没改过
 
-
-### 视频演示：
-https://www.bilibili.com/video/av95328192
 
 ### 常见问题：
 问：提示未找到“RDR2NativeTrainer.json”怎么办？
